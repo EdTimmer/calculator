@@ -10,7 +10,12 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            display: ''
+            // display: this.state.a + this.state.operator + this.state.b,
+            a: '',
+            b: '',
+            operator: '',
+            equals: '',
+            result: '',
         }
         this.zero = this.zero.bind(this);
         this.one = this.one.bind(this);
@@ -22,44 +27,345 @@ class Home extends Component {
         this.seven = this.seven.bind(this);
         this.eight = this.eight.bind(this);
         this.nine = this.nine.bind(this);
+        this.dot = this.dot.bind(this);
         this.clear = this.clear.bind(this);
+        this.plus = this.plus.bind(this);
+        this.minus = this.minus.bind(this);
+        this.star = this.star.bind(this);
+        this.slash = this.slash.bind(this);
+        this.calculate = this.calculate.bind(this);
     }
     zero() {
-        this.setState({ display: this.state.display + '0' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '0',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 0 })
+        }
+        else {
+            this.setState({ a: this.state.a + 0 })
+        }
     }
     one() {
-        this.setState({ display: this.state.display + '1' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '1',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 1 })
+        }
+        else {
+            this.setState({ a: this.state.a + 1 })
+        }
     }
     two() {
-        this.setState({ display: this.state.display + '2' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '2',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 2 })
+        }
+        else {
+            this.setState({ a: this.state.a + 2 })
+        }
     }
     three() {
-        this.setState({ display: this.state.display + '3' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '3',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 3 })
+        }
+        else {
+            this.setState({ a: this.state.a + 3 })
+        }
     }
     four() {
-        this.setState({ display: this.state.display + '4' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '4',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 4 })
+        }
+        else {
+            this.setState({ a: this.state.a + 4 })
+        }
     }
     five() {
-        this.setState({ display: this.state.display + '5' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '5',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 5 })
+        }
+        else {
+            this.setState({ a: this.state.a + 5 })
+        }
     }
     six() {
-        this.setState({ display: this.state.display + '6' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '6',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 6 })
+        }
+        else {
+            this.setState({ a: this.state.a + 6 })
+        }
     }
     seven() {
-        this.setState({ display: this.state.display + '7' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '7',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 7 })
+        }
+        else {
+            this.setState({ a: this.state.a + 7 })
+        }
     }
     eight() {
-        this.setState({ display: this.state.display + '8' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '8',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 8 })
+        }
+        else {
+            this.setState({ a: this.state.a + 8 })
+        }
     }
     nine() {
-        this.setState({ display: this.state.display + '9' })
+        if (this.state.result) {
+            this.setState(
+                {
+                    a: '9',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + 9 })
+        }
+        else {
+            this.setState({ a: this.state.a + 9 })
+        }
+    }
+    dot() {
+        if (this.state.result !== '') {
+            this.setState(
+                {
+                    a: '.',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else if (this.state.operator) {
+            this.setState({ b: this.state.b + '.' })
+        }
+        else {
+            this.setState({ a: this.state.a + '.' })
+        }
     }
     clear() {
-        this.setState({ display: '' })
+        this.setState({ a: '', b: '', operator: '', equals: '', result: '' })
+    }
+    plus() {
+        if (this.state.result !== '') {
+            const currentResult = this.state.result;
+            this.setState(
+                {
+                    a: currentResult,
+                    b: '',
+                    operator: '+',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else {
+            this.setState({ operator: '+' })
+        }
+    }
+    minus() {
+        if (this.state.result !== '') {
+            const currentResult = this.state.result;
+            this.setState(
+                {
+                    a: currentResult,
+                    b: '',
+                    operator: '-',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else {
+            this.setState({ operator: '-' })
+        }
+    }
+    star() {
+        if (this.state.result !== '') {
+            const currentResult = this.state.result;
+            this.setState(
+                {
+                    a: currentResult,
+                    b: '',
+                    operator: '*',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else {
+            this.setState({ operator: '*' })
+        }
+    }
+    slash() {
+        if (this.state.result !== '') {
+            const currentResult = this.state.result;
+            this.setState(
+                {
+                    a: currentResult,
+                    b: '',
+                    operator: '/',
+                    equals: '',
+                    result: '',
+                }
+            )
+        }
+        else {
+            this.setState({ operator: '/' })
+        }
+    }
+    calculate() {
+        if (this.state.operator === '+') {
+
+            const addition = (a, b) => {
+                return parseFloat(a) + parseFloat(b);
+            }
+
+            this.setState({ equals: ' = ', result: addition(this.state.a, this.state.b) })
+        }
+
+        if (this.state.operator === '-') {
+
+            const subtraction = (a, b) => {
+                return parseFloat(a) - parseFloat(b);
+            }
+
+            this.setState({ equals: ' = ', result: subtraction(this.state.a, this.state.b) })
+        }
+
+        if (this.state.operator === '*') {
+
+            const multiplication = (a, b) => {
+                return parseFloat(a) * parseFloat(b);
+            }
+
+            this.setState({ equals: ' = ', result: multiplication(this.state.a, this.state.b) })
+        }
+
+        if (this.state.operator === '/') {
+
+            const division = (a, b) => {
+                return parseFloat(a) / parseFloat(b);
+            }
+
+            this.setState({ equals: ' = ', result: division(this.state.a, this.state.b) })
+        }
     }
 
+
     render() {
-        const { zero, one, two, three, four, five, six, seven, eight, nine, clear } = this;
+        const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate } = this;
+        const { a, b, operator, equals, result } = this.state;
+        const ready = () => {
+            if (a === '' && b === '' && operator === '' && equals === '' && result === '') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         return (
             <div style={{ paddingTop: '30px' }}>
 
@@ -71,64 +377,87 @@ class Home extends Component {
                     <Grid item xs={3} container alignItems='center'>
 
                         <Grid container spacing={16} alignItems='center' justify='center'>
-                            {/* justify="center" alignItems='center' */}
+
                             <Grid item xs={12} container alignItems='center' justify='center'>
-                                <div>
-                                    {this.state.display}
-                                </div>
+                                {
+                                    ready() ? (
+                                        <div className='display'>
+                                            <span>0</span>
+                                        </div>
+                                    ) : (
+                                            <div className='display'>
+                                                <span>{this.state.a}</span>
+                                                <span>{this.state.operator}</span>
+                                                <span>{this.state.b}</span>
+                                                <span>{this.state.equals}</span>
+                                                <span>{this.state.result}</span>
+                                            </div>
+                                        )
+                                }
+
                             </Grid>
 
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={clear}>
-                                    ac
+                                <Button variant="contained" className='buttonA' onClick={clear}>
+                                    <span style={{ fontSize: '25px' }}>ac</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <NumberButton symbol={'%'} />
+                                <Button variant="contained" className='buttonA' onClick={one}>
+                                    <span style={{ fontSize: '25px' }}>%</span>
+                                </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <NumberButton symbol={'/'} />
+                                <Button variant="contained" className='buttonA' onClick={slash}>
+                                    <span style={{ fontSize: '25px' }}>/</span>
+                                </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <NumberButton symbol={'*'} />
+                                <Button variant="contained" className='buttonA' onClick={star}>
+                                    <span style={{ fontSize: '25px' }}>*</span>
+                                </Button>
                             </Grid>
 
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={seven}>
-                                    7
+                                <Button variant="contained" className='buttonA' onClick={seven}>
+                                    <span style={{ fontSize: '25px' }}>7</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={eight}>
-                                    8
+                                <Button variant="contained" className='buttonA' onClick={eight}>
+                                    <span style={{ fontSize: '25px' }}>8</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={nine}>
-                                    9
+                                <Button variant="contained" className='buttonA' onClick={nine}>
+                                    <span style={{ fontSize: '25px' }}>9</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <NumberButton symbol={'-'} />
+                                <Button variant="contained" className='buttonA' onClick={minus}>
+                                    <span style={{ fontSize: '25px' }}>-</span>
+                                </Button>
                             </Grid>
 
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={four}>
-                                    4
+                                <Button variant="contained" className='buttonA' onClick={four}>
+                                    <span style={{ fontSize: '25px' }}>4</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={five}>
-                                    5
+                                <Button variant="contained" className='buttonA' onClick={five}>
+                                    <span style={{ fontSize: '25px' }}>5</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={six}>
-                                    6
+                                <Button variant="contained" className='buttonA' onClick={six}>
+                                    <span style={{ fontSize: '25px' }}>6</span>
                                 </Button>
                             </Grid>
                             <Grid item xs={3} container justify="center" alignItems='center'>
-                                <NumberButton symbol={'+'} />
+                                <Button variant="contained" className='buttonA' onClick={plus}>
+                                    <span style={{ fontSize: '25px' }}>+</span>
+                                </Button>
                             </Grid>
 
                             <Grid container spacing={16} alignItems='center' justify='center'>
@@ -136,40 +465,43 @@ class Home extends Component {
                                     <Grid container spacing={16} alignItems='center' justify='center'>
 
                                         <Grid item xs={4} container justify="center" alignItems='center'>
-                                            <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={one}>
-                                                1
+                                            <Button variant="contained" className='buttonA' onClick={one}>
+                                                <span style={{ fontSize: '25px' }}>1</span>
                                             </Button>
                                         </Grid>
                                         <Grid item xs={4} container justify="center" alignItems='center'>
-                                            <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={two}>
-                                                2
+                                            <Button variant="contained" className='buttonA' onClick={two}>
+                                                <span style={{ fontSize: '25px' }}>2</span>
+                                            </Button>
+                                        </Grid>
+
+                                        <Grid item xs={4} container justify="center" alignItems='center'>
+                                            <Button variant="contained" className='buttonA' onClick={three}>
+                                                <span style={{ fontSize: '25px' }}>3</span>
                                             </Button>
                                         </Grid>
                                         <Grid item xs={4} container justify="center" alignItems='center'>
-                                            <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={three}>
-                                                3
+                                            <Button variant="contained" className='buttonA' onClick={zero}>
+                                                <span style={{ fontSize: '25px' }}>0</span>
                                             </Button>
                                         </Grid>
                                         <Grid item xs={4} container justify="center" alignItems='center'>
-                                            <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={zero}>
-                                                0
+                                            <Button variant="contained" className='buttonA' onClick={dot}>
+                                                <span style={{ fontSize: '25px' }}>.</span>
                                             </Button>
                                         </Grid>
                                         <Grid item xs={4} container justify="center" alignItems='center'>
-                                            <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={one}>
-                                                .
-                                            </Button>
-                                        </Grid>
-                                        <Grid item xs={4} container justify="center" alignItems='center'>
-                                            <Button variant="contained" style={{ width: '40px', height: '60px', fontSize: '25px' }} onClick={one}>
-                                                +/-
+                                            <Button variant="contained" className='buttonA' onClick={one}>
+                                                <span style={{ fontSize: '25px' }}>+/-</span>
                                             </Button>
                                         </Grid>
 
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={3} container justify="center" alignItems='center'>
-                                    <EqualsButton symbol={'='} />
+                                    <Button variant="contained" style={{ padding: '55px 20px', fontSize: '25px', margin: '5px' }} onClick={calculate}>
+                                        <span style={{ fontSize: '25px' }}>=</span>
+                                    </Button>
                                 </Grid>
                             </Grid>
 
