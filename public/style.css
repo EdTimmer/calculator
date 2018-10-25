@@ -1,7 +1,7 @@
 .buttonA {
   width: 40px; 
   height: 60px; 
-  /* margin: 50px; */
+  padding: 5px;
 }
 
 .buttonB {
@@ -26,3 +26,120 @@
   padding: 5px;
 }
 
+/* trying grid */
+.wrapper {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.boxDisplay {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  text-align: right;
+}
+
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  text-align: center;
+}
+
+.display {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+
+.ac {
+  grid-column: 1;
+  grid-row: 2;
+}
+.percent {
+  grid-column: 2;
+  grid-row: 2;
+}
+.slash {
+  grid-column: 3;
+  grid-row: 2 ;
+}
+.star {
+  grid-column: 4;
+  grid-row: 2 ;
+}
+
+
+.seven {
+  grid-column: 1;
+  grid-row: 3;
+}
+.eight {
+  grid-column: 2;
+  grid-row: 3;
+}
+.nine {
+  grid-column: 3;
+  grid-row: 3;
+}
+.minus {
+  grid-column: 4;
+  grid-row: 3;
+}
+
+
+
+.four {
+  grid-column: 1;
+  grid-row: 4;
+}
+.five {
+  grid-column: 2;
+  grid-row: 4;
+}
+.six {
+  grid-column: 3;
+  grid-row: 4 ;
+}
+.plus {
+  grid-column: 4;
+  grid-row: 4 ;
+}
+
+
+
+.one {
+    grid-column: 1;
+    grid-row: 5;
+}
+.two {
+    grid-column: 2;
+    grid-row: 5;
+}
+.three {
+    grid-column: 3;
+    grid-row: 5;
+}
+.zero {
+    grid-column: 1;
+    grid-row: 6;
+}
+.dot {
+  grid-column: 2;
+  grid-row: 6;
+}
+.plusminus {
+  grid-column: 3;
+  grid-row: 6;
+}
+.equals {
+  grid-column: 4;
+  grid-row: 5 / 7;
+}
