@@ -14,7 +14,8 @@ class Home extends Component {
             b: '',
             operator: '',
             equals: '',
-            result: ''
+            result: '',
+            on: false
         }
         this.zero = this.zero.bind(this);
         this.one = this.one.bind(this);
@@ -35,6 +36,7 @@ class Home extends Component {
         this.calculate = this.calculate.bind(this);
         this.getPercentage = this.getPercentage.bind(this);
         this.changeSign = this.changeSign.bind(this);
+        this.powerSwitch = this.powerSwitch.bind(this);
     }
     zero() {
         if (this.state.result) {
@@ -344,7 +346,7 @@ class Home extends Component {
                 {
                     a: currentResult,
                     b: '',
-                    operator: ' * ',
+                    operator: ' ✕ ',
                     equals: '',
                     result: '',
                 }
@@ -354,7 +356,7 @@ class Home extends Component {
             this.setState({
                 a: '0',
                 b: '',
-                operator: ' * ',
+                operator: ' ✕ ',
                 equals: '',
                 result: '',
             })
@@ -368,14 +370,14 @@ class Home extends Component {
                     this.setState({
                         a: this.state.result,
                         b: '',
-                        operator: ' * ',
+                        operator: ' ✕ ',
                         equals: '',
                         result: '',
                     })
                 })
         }
         else {
-            this.setState({ operator: ' * ' })
+            this.setState({ operator: ' ✕ ' })
         }
     }
     slash() {
@@ -468,7 +470,7 @@ class Home extends Component {
         }
 
         //multiplication
-        if (this.state.operator === ' * ' && this.state.b === '') {
+        if (this.state.operator === ' ✕ ' && this.state.b === '') {
 
             const multiplication = (a) => {
                 return parseFloat(a) * parseFloat(a);
@@ -476,7 +478,7 @@ class Home extends Component {
 
             this.setState({ b: this.state.a, equals: ' = ', result: multiplication(this.state.a) })
         }
-        if (this.state.operator === ' * ' && this.state.b !== '') {
+        if (this.state.operator === ' ✕ ' && this.state.b !== '') {
 
             const multiplication = (a, b) => {
                 return parseFloat(a) * parseFloat(b);
@@ -569,7 +571,7 @@ class Home extends Component {
                 })
             }
             //multiplication
-            if (this.state.operator === ' * ') {
+            if (this.state.operator === ' ✕ ') {
 
                 const multiplication = (a, b) => {
                     return parseFloat(a) * parseFloat(b);
@@ -637,8 +639,12 @@ class Home extends Component {
         }
     }
 
+    powerSwitch() {
+        this.setState({ on: !this.state.on })
+    }
+
     render() {
-        const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign } = this;
+        const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
         const { a, b, operator, equals, result } = this.state;
         const ready = () => {
             if (a === '' && b === '' && operator === '' && equals === '' && result === '') {
@@ -649,45 +655,60 @@ class Home extends Component {
             }
         }
 
+        const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
+        const buttonOn = this.state.on ? 'box-on' : 'box-off';
+        const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
+        const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off'
+
         return (
             <div style={{ paddingTop: '30px' }}>
                 <div className="wrapper" style={{ padding: '20px' }}>
-                    <div className="boxDisplay">
-                        {
-                            ready() ? (
-                                <div>
-                                    <span>0</span>
-                                </div>
-                            ) : (
+                    <div className={deviceOn}>
+                        <div className={displayOn}>
+                            {
+                                ready() ? (
                                     <div>
-                                        <span>{this.state.a}</span>
-                                        <span>{this.state.operator}</span>
-                                        <span>{this.state.b}</span>
-                                        <span>{this.state.equals}</span>
-                                        <span>{this.state.result}</span>
+                                        <span>0</span>
                                     </div>
-                                )
-                        }
+                                ) : (
+                                        <div>
+                                            <span>{this.state.a}</span>
+                                            <span>{this.state.operator}</span>
+                                            <span>{this.state.b}</span>
+                                            <span>{this.state.equals}</span>
+                                            <span>{this.state.result}</span>
+                                        </div>
+                                    )
+                            }
+                        </div>
+
+                        <div className={`${powerOn} power`} onClick={powerSwitch}>⏻</div>
+
+                        <div className={`${buttonOn} ac`} onClick={clear}>ac</div>
+                        <div className={`${buttonOn} percent`} onClick={getPercentage}>%</div>
+                        <div className={`${buttonOn} slash`} onClick={slash}>/</div>
+                        <div className={`${buttonOn} star`} onClick={star}>✕</div>
+
+                        <div className={`${buttonOn} seven`} onClick={seven}>7</div>
+                        <div className={`${buttonOn} eight`} onClick={eight}>8</div>
+                        <div className={`${buttonOn} nine`} onClick={nine}>9</div>
+                        <div className={`${buttonOn} minus`} onClick={minus}>-</div>
+
+                        <div className={`${buttonOn} four`} onClick={four}>4</div>
+                        <div className={`${buttonOn} five`} onClick={five}>5</div>
+                        <div className={`${buttonOn} six`} onClick={six}>6</div>
+                        <div className={`${buttonOn} plus`} onClick={plus}>+</div>
+
+                        <div className={`${buttonOn} one`} onClick={one}>1</div>
+                        <div className={`${buttonOn} two`} onClick={two}>2</div>
+                        <div className={`${buttonOn} three`} onClick={three}>3</div>
+
+                        <div className={`${buttonOn} zero`} onClick={zero}>0</div>
+                        <div className={`${buttonOn} dot`} onClick={dot}>.</div>
+                        <div className={`${buttonOn} plusminus`} onClick={changeSign}>+/-</div>
+                        <div className={`${buttonOn} equals`} onClick={calculate}>=</div>
+
                     </div>
-                    <div className="box ac" onClick={clear}>ac</div>
-                    <div className="box percent" onClick={getPercentage}>%</div>
-                    <div className="box slash" onClick={slash}>/</div>
-                    <div className="box star" onClick={star}>*</div>
-                    <div className="box seven" onClick={seven}>7</div>
-                    <div className="box eight" onClick={eight}>8</div>
-                    <div className="box nine" onClick={nine}>9</div>
-                    <div className="box minus" onClick={minus}>-</div>
-                    <div className="box four" onClick={four}>4</div>
-                    <div className="box five" onClick={five}>5</div>
-                    <div className="box six" onClick={six}>6</div>
-                    <div className="box plus" onClick={plus}>+</div>
-                    <div className="box one" onClick={one}>1</div>
-                    <div className="box two" onClick={two}>2</div>
-                    <div className="box three" onClick={three}>3</div>
-                    <div className="box zero" onClick={zero}>0</div>
-                    <div className="box dot" onClick={dot}>.</div>
-                    <div className="box plusminus" onClick={changeSign}>+/-</div>
-                    <div className="box equals" onClick={calculate}>=</div>
                 </div>
             </div>
         );
