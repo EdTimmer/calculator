@@ -103,9 +103,14 @@ body {
   border-radius: 7px;
   outline: none;
   box-shadow: 0 0 10px #9ecaed; 
-  height: 40px;
-  white-space: normal;
+  height: 80px;
+  white-space: nowrap;
   overflow: hidden;
+  /* text-overflow: clip; */
+}
+
+.innerDisplay {
+  float: right;
 }
 
 .boxDisplay-off {
@@ -125,7 +130,7 @@ body {
   border-radius: 7px;
   outline: none;
   /* box-shadow: 0 0 10px #9ecaed;  */
-  height: 40px;
+  height: 80px;
 }
 
 .box-on {

@@ -680,7 +680,15 @@ class Home extends Component {
         console.log('a is:', this.state.a)
         console.log('b is:', this.state.b)
         console.log('result is', this.state.result)
-
+        const truncatedResult = () => {
+            if (this.state.result.length > 10) {
+                const newResult = parseFloat(this.state.result).toExponential();
+                return newResult.toString();
+            }
+            else {
+                return this.state.result;
+            }
+        }
 
         const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
         // const { a, b, operator, equals, result } = this.state;
@@ -723,11 +731,16 @@ class Home extends Component {
                         </div>*/}
 
                         <div className={displayOn}>
-                            <div>
+                            <div className="innerDisplay">
                                 <span>{this.state.a}</span>
                                 <span>{this.state.operator}</span>
                                 <span>{this.state.b}</span>
                                 <span>{this.state.equals}</span>
+                                {/*<span>{this.state.result}</span>*/}
+                            </div>
+                            <br />
+                            <div>
+                                {/*<span>{truncatedResult}</span>*/}
                                 <span>{this.state.result}</span>
                             </div>
                         </div>
