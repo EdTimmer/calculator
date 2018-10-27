@@ -1,14 +1,23 @@
 body {
-  background-color: black;
+  /* background-color: blue; */
+  background-image: url("../images/tron1.png");
 }
+/* .bgimg-1 { */
+  /* background-image: url(""); */
+  /* opacity: 0.6; */
+  /* height: 900px; */
+  /* min-height: 100%; */
+  /* height: 100vh; */
+  /* max-width: 100wh; */
+/* } */
 
-.display {
+/* .display {
   border: 1px solid grey;
   width: 400px;
   height: 30px;
   text-align: right;
   padding: 5px;
-}
+} */
 
 /* grid */
 .wrapper {
@@ -17,7 +26,7 @@ body {
   -ms-grid-columns: 100px 100px 100px 100px;
       grid-template-columns: 100px 100px 100px 100px;
   grid-gap: 10px;
-  background-color: black;
+  background-color: transparent;
   color: #444;
 }
 
@@ -79,7 +88,7 @@ body {
 
 .boxDisplay-on {
   background-color: #fff;
-  color: black;
+  color: blue;
   border-radius: 5px;
   border: 1px solid grey;
   padding: 20px;
@@ -93,7 +102,10 @@ body {
   border: 2px solid  #9ecaed;
   border-radius: 7px;
   outline: none;
-	box-shadow: 0 0 10px #9ecaed; 
+  box-shadow: 0 0 10px #9ecaed; 
+  height: 40px;
+  white-space: normal;
+  overflow: hidden;
 }
 
 .boxDisplay-off {
@@ -112,7 +124,8 @@ body {
   border: 2px solid grey;
   border-radius: 7px;
   outline: none;
-	/* box-shadow: 0 0 10px #9ecaed;  */
+  /* box-shadow: 0 0 10px #9ecaed;  */
+  height: 40px;
 }
 
 .box-on {

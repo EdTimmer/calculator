@@ -5,6 +5,8 @@ import NumberButton from './Buttons/NumberButton';
 // import ZeroButton from './Buttons/ZeroButton';
 // import Screen from './Screen';
 import EqualsButton from './Buttons/EqualsButton';
+import jspfpc from 'js-float-calculation';
+// var jspfpc = require("js-float-calculation");
 
 class Home extends Component {
     constructor() {
@@ -37,24 +39,60 @@ class Home extends Component {
         this.getPercentage = this.getPercentage.bind(this);
         this.changeSign = this.changeSign.bind(this);
         this.powerSwitch = this.powerSwitch.bind(this);
+        this.additionFn = this.additionFn.bind(this);
+        this.subtractionFn = this.subtractionFn.bind(this);
+        this.multiplicationFn = this.multiplicationFn.bind(this);
+        this.divisionFn = this.divisionFn.bind(this);
+        this.selectOperation = this.selectOperation.bind(this);
+    }
+
+    additionFn(a, b) {
+        const f1 = parseFloat(a);
+        const f2 = parseFloat(b);
+        const f3 = f1.add(f2)
+        return f3;
+    }
+    subtractionFn(a, b) {
+        const f1 = parseFloat(a);
+        const f2 = parseFloat(b);
+        const f3 = f1.sub(f2);
+        return f3;
+    }
+    multiplicationFn(a, b) {
+        const f1 = parseFloat(a);
+        const f2 = parseFloat(b);
+        const f3 = f1.mul(f2);
+        return f3;
+    }
+    divisionFn(a, b) {
+        const f1 = parseFloat(a);
+        const f2 = parseFloat(b);
+        const f3 = f1.div(f2);
+        return f3;
+    }
+    selectOperation(a, b, operator) {
+        if (this.state.operator === ' + ') {
+            return this.additionFn(a, b)
+        }
+        if (this.state.operator === ' - ') {
+            return this.subtractionFn(a, b)
+        }
+        if (this.state.operator === ' ✕ ') {
+            return this.multiplicationFn(a, b)
+        }
+        if (this.state.operator === ' / ') {
+            return this.divisionFn(a, b)
+        }
     }
     zero() {
         if (this.state.result) {
-            this.setState(
-                {
-                    a: '0',
-                    b: '',
-                    operator: '',
-                    equals: '',
-                    result: '',
-                }
-            )
+            this.clear();
         }
-        else if (this.state.operator) {
-            this.setState({ b: this.state.b + 0 })
-        }
-        else {
+        else if (this.state.a !== '0' && this.state.operator === '') {
             this.setState({ a: this.state.a + 0 })
+        }
+        else if (this.state.operator && this.state.b !== '0') {
+            this.setState({ b: this.state.b + 0 })
         }
     }
     one() {
@@ -69,11 +107,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 1 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 1 })
-        }
-        else {
-            this.setState({ a: this.state.a + 1 })
         }
     }
     two() {
@@ -88,11 +126,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 2 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 2 })
-        }
-        else {
-            this.setState({ a: this.state.a + 2 })
         }
     }
     three() {
@@ -107,11 +145,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 3 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 3 })
-        }
-        else {
-            this.setState({ a: this.state.a + 3 })
         }
     }
     four() {
@@ -126,11 +164,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 4 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 4 })
-        }
-        else {
-            this.setState({ a: this.state.a + 4 })
         }
     }
     five() {
@@ -145,11 +183,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 5 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 5 })
-        }
-        else {
-            this.setState({ a: this.state.a + 5 })
         }
     }
     six() {
@@ -164,11 +202,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 6 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 6 })
-        }
-        else {
-            this.setState({ a: this.state.a + 6 })
         }
     }
     seven() {
@@ -183,11 +221,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 7 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 7 })
-        }
-        else {
-            this.setState({ a: this.state.a + 7 })
         }
     }
     eight() {
@@ -202,11 +240,11 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 8 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 8 })
-        }
-        else {
-            this.setState({ a: this.state.a + 8 })
         }
     }
     nine() {
@@ -221,19 +259,19 @@ class Home extends Component {
                 }
             )
         }
+        else if (this.state.operator === '') {
+            this.setState({ a: this.state.a + 9 })
+        }
         else if (this.state.operator) {
             this.setState({ b: this.state.b + 9 })
         }
-        else {
-            this.setState({ a: this.state.a + 9 })
-        }
     }
-    //DOT NEED WORK
+
     dot() {
-        if (this.state.result !== '') {
+        if (this.state.result) {
             this.setState(
                 {
-                    a: '.',
+                    a: '0.',
                     b: '',
                     operator: '',
                     equals: '',
@@ -241,24 +279,35 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.a[this.state.a.length - 1] === '.') {
-            this.setState({ a: this.state.a })
-        }
-        else if (this.state.b[this.state.b.length - 1] === '.') {
-            this.setState({ b: this.state.b })
-        }
-        else if (this.state.operator) {
-            this.setState({ b: this.state.b + '.' })
-        }
-        else {
+        else if (this.state.a && this.state.a.indexOf('.') === -1 && !this.state.operator) {
             this.setState({ a: this.state.a + '.' })
         }
+        else if (this.state.a && this.state.operator && !this.state.b) {
+            this.setState({ b: '0.' })
+        }
+        else if (this.state.b && this.state.b.indexOf('.') === -1) {
+            this.setState({ b: this.state.b + '.' })
+        }
+
     }
     clear() {
-        this.setState({ a: '', b: '', operator: '', equals: '', result: '' })
+        this.setState({ a: '', b: '', operator: '', equals: '', result: '0' })
     }
+
     plus() {
-        if (this.state.result !== '') {
+        if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
+            const getResult = async (a, b) => {
+                return this.selectOperation(a, b);
+            }
+            getResult(this.state.a, this.state.b)
+                .then((res) => this.setState({
+                    a: `${res}`,
+                    operator: ' + ',
+                    b: '',
+                    result: ''
+                }))
+        }
+        else if (this.state.result !== '') {
             const currentResult = this.state.result;
             this.setState(
                 {
@@ -279,26 +328,23 @@ class Home extends Component {
                 result: '',
             })
         }
-        else if (this.state.a !== '' && this.state.operator !== '' && this.state.b !== '' && this.state.result === '') {
-            const setResult = async () => {
-                return this.calculate();
-            }
-            setResult()
-                .then(() => {
-                    this.setState({
-                        a: this.state.result,
-                        b: '',
-                        operator: ' + ',
-                        equals: '',
-                        result: '',
-                    })
-                })
-        }
         else {
             this.setState({ operator: ' + ' })
         }
     }
     minus() {
+        if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
+            const getResult = async (a, b) => {
+                return this.selectOperation(a, b);
+            }
+            getResult(this.state.a, this.state.b)
+                .then((res) => this.setState({
+                    a: `${res}`,
+                    operator: ' - ',
+                    b: '',
+                    result: ''
+                }))
+        }
         if (this.state.result !== '') {
             const currentResult = this.state.result;
             this.setState(
@@ -320,26 +366,23 @@ class Home extends Component {
                 result: '',
             })
         }
-        else if (this.state.a !== '' && this.state.operator !== '' && this.state.b !== '' && this.state.result === '') {
-            const setResult = async () => {
-                return this.calculate();
-            }
-            setResult()
-                .then(() => {
-                    this.setState({
-                        a: this.state.result,
-                        b: '',
-                        operator: ' - ',
-                        equals: '',
-                        result: '',
-                    })
-                })
-        }
         else {
             this.setState({ operator: ' - ' })
         }
     }
     star() {
+        if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
+            const getResult = async (a, b) => {
+                return this.selectOperation(a, b);
+            }
+            getResult(this.state.a, this.state.b)
+                .then((res) => this.setState({
+                    a: `${res}`,
+                    operator: ' ✕ ',
+                    b: '',
+                    result: ''
+                }))
+        }
         if (this.state.result !== '') {
             const currentResult = this.state.result;
             this.setState(
@@ -361,26 +404,23 @@ class Home extends Component {
                 result: '',
             })
         }
-        else if (this.state.a !== '' && this.state.operator !== '' && this.state.b !== '' && this.state.result === '') {
-            const setResult = async () => {
-                return this.calculate();
-            }
-            setResult()
-                .then(() => {
-                    this.setState({
-                        a: this.state.result,
-                        b: '',
-                        operator: ' ✕ ',
-                        equals: '',
-                        result: '',
-                    })
-                })
-        }
         else {
             this.setState({ operator: ' ✕ ' })
         }
     }
     slash() {
+        if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
+            const getResult = async (a, b) => {
+                return this.selectOperation(a, b);
+            }
+            getResult(this.state.a, this.state.b)
+                .then((res) => this.setState({
+                    a: `${res}`,
+                    operator: ' / ',
+                    b: '',
+                    result: ''
+                }))
+        }
         if (this.state.result !== '') {
             const currentResult = this.state.result;
             this.setState(
@@ -402,21 +442,6 @@ class Home extends Component {
                 result: '',
             })
         }
-        else if (this.state.a !== '' && this.state.operator !== '' && this.state.b !== '' && this.state.result === '') {
-            const setResult = async () => {
-                return this.calculate();
-            }
-            setResult()
-                .then(() => {
-                    this.setState({
-                        a: this.state.result,
-                        b: '',
-                        operator: ' / ',
-                        equals: '',
-                        result: '',
-                    })
-                })
-        }
         else {
             this.setState({ operator: ' / ' })
         }
@@ -434,90 +459,91 @@ class Home extends Component {
             })
         }
         //addition
-        if (this.state.operator === ' + ' && this.state.b === '') {
-
-            const addition = (a) => {
-                return parseFloat(a) + parseFloat(a);
-            }
-
-            this.setState({ b: this.state.a, equals: ' = ', result: addition(this.state.a) })
+        else if (this.state.operator === ' + ' && this.state.b === '') {
+            this.setState({ b: this.state.a, equals: ' = ', result: this.state.a * 2 })
         }
-        if (this.state.operator === ' + ' && this.state.b !== '') {
-
-            const addition = (a, b) => {
-                return parseFloat(a) + parseFloat(b);
+        else if (this.state.a !== '' && this.state.operator === ' + ' && this.state.b !== '') {
+            const getResult = async () => {
+                return this.additionFn(this.state.a, this.state.b);
             }
-
-            this.setState({ equals: ' = ', result: addition(this.state.a, this.state.b) })
+            getResult()
+                .then(console.log('getResult got called'))
+                .then((res) => {
+                    this.setState({
+                        equals: ' = ',
+                        result: ` ${res} `,
+                    })
+                })
         }
 
         //subtraction
-        if (this.state.operator === ' - ' && this.state.b === '') {
-
-            const subtraction = (a) => {
-                return parseFloat(a) - parseFloat(a);
-            }
-
-            this.setState({ b: this.state.a, equals: ' = ', result: subtraction(this.state.a) })
+        else if (this.state.operator === ' - ' && this.state.b === '') {
+            this.setState({ b: this.state.a, equals: ' = ', result: '0' })
         }
-        if (this.state.operator === ' - ' && this.state.b !== '') {
-
-            const subtraction = (a, b) => {
-                return parseFloat(a) - parseFloat(b);
+        else if (this.state.a !== '' && this.state.operator === ' - ' && this.state.b !== '') {
+            const getResult = async () => {
+                return this.subtractionFn(this.state.a, this.state.b);
             }
-
-            this.setState({ equals: ' = ', result: subtraction(this.state.a, this.state.b) })
+            getResult()
+                .then((res) => {
+                    this.setState({
+                        equals: ' = ',
+                        result: ` ${res} `,
+                    })
+                })
         }
 
         //multiplication
-        if (this.state.operator === ' ✕ ' && this.state.b === '') {
-
-            const multiplication = (a) => {
-                return parseFloat(a) * parseFloat(a);
-            }
-
-            this.setState({ b: this.state.a, equals: ' = ', result: multiplication(this.state.a) })
+        else if (this.state.operator === ' ✕ ' && this.state.b === '') {
+            const f1 = parseFloat(this.state.a);
+            const f2 = f1;
+            const f3 = f1.mul(f2)
+            this.setState({ b: this.state.a, equals: ' = ', result: f3 })
         }
-        if (this.state.operator === ' ✕ ' && this.state.b !== '') {
-
-            const multiplication = (a, b) => {
-                return parseFloat(a) * parseFloat(b);
+        else if (this.state.a !== '' && this.state.operator === ' ✕ ' && this.state.b !== '') {
+            const getResult = async () => {
+                return this.multiplicationFn(this.state.a, this.state.b);
             }
-
-            this.setState({ equals: ' = ', result: multiplication(this.state.a, this.state.b) })
+            getResult()
+                .then((res) => {
+                    this.setState({
+                        equals: ' = ',
+                        result: ` ${res} `,
+                    })
+                })
         }
 
         //division
-        if (this.state.operator === ' / ' && this.state.b === '') {
-
-            const division = (a) => {
-                return parseFloat(a) / parseFloat(a);
-            }
-
-            this.setState({ b: this.state.a, equals: ' = ', result: division(this.state.a) })
+        else if (this.state.operator === ' / ' && this.state.b === '') {
+            this.setState({ b: this.state.a, equals: ' = ', result: '1' })
         }
-        if (this.state.operator === ' / ' && this.state.b !== '' && this.state.b !== '0') {
-
-            const division = (a, b) => {
-                return parseFloat(a) / parseFloat(b);
+        else if (this.state.operator === ' / ' && this.state.b !== '' && this.state.b !== '0') {
+            const getResult = async () => {
+                return this.divisionFn(this.state.a, this.state.b);
             }
-            this.setState({ equals: ' = ', result: division(this.state.a, this.state.b) })
+            getResult()
+                .then((res) => {
+                    this.setState({
+                        equals: ' = ',
+                        result: ` ${res} `,
+                    })
+                })
         }
-
-        if (this.state.operator === ' / ' && this.state.b === '0') {
+        else if (this.state.operator === ' / ' && this.state.b === '0') {
             this.setState({
                 a: '',
                 b: '',
                 operator: '',
                 equals: '',
-                result: 'beep cannot compute beep boo beep error'
+                result: 'SELF-DESTRUCT SEQUENCE ACTIVATED'
             })
         }
     }
     getPercentage() {
         if (this.state.result !== '') {
             const percentage = (res) => {
-                return parseFloat(res) / 100;
+                return this.divisionFn(res, 100)
+                // return parseFloat(res) / 100;
             }
             const currentResult = this.state.result
             this.setState({
@@ -528,9 +554,10 @@ class Home extends Component {
                 result: percentage(currentResult)
             })
         }
-        if (this.state.a !== '' && this.state.b === '') {
+        else if (this.state.a !== '' && this.state.b === '') {
             const percentage = (a) => {
-                return parseFloat(a) / 100;
+                return this.divisionFn(a, 100)
+                // return parseFloat(a) / 100;
             }
             const numA = this.state.a
             this.setState({
@@ -542,58 +569,56 @@ class Home extends Component {
             })
         }
         else if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
-            const newB = (this.state.a / 100) * this.state.b;
+
+            const newB = this.multiplicationFn(this.divisionFn(this.state.a, 100), this.state.b)
+            // const newB = (this.state.a / 100) * this.state.b;
 
             //addition
             if (this.state.operator === ' + ') {
 
-                const addition = (a, b) => {
-                    return parseFloat(a) + parseFloat(b);
-                }
-
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: addition(this.state.a, newB)
+                    result: this.additionFn(this.state.a, newB)
                 })
             }
             //subtraction
             if (this.state.operator === ' - ') {
 
-                const subtraction = (a, b) => {
-                    return parseFloat(a) - parseFloat(b);
-                }
+                // const subtraction = (a, b) => {
+                //     return parseFloat(a) - parseFloat(b);
+                // }
 
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: subtraction(this.state.a, newB)
+                    result: this.subtractionFn(this.state.a, newB)
                 })
             }
             //multiplication
             if (this.state.operator === ' ✕ ') {
 
-                const multiplication = (a, b) => {
-                    return parseFloat(a) * parseFloat(b);
-                }
+                // const multiplication = (a, b) => {
+                //     return parseFloat(a) * parseFloat(b);
+                // }
 
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: multiplication(this.state.a, newB)
+                    result: this.multiplicationFn(this.state.a, newB)
                 })
             }
             //division
             if (this.state.operator === ' / ') {
 
-                const division = (a, b) => {
-                    return parseFloat(a) / parseFloat(b);
-                }
+                // const division = (a, b) => {
+                //     return parseFloat(a) / parseFloat(b);
+                // }
 
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: division(this.state.a, newB)
+                    result: this.divisionFn(this.state.a, newB)
                 })
             }
 
@@ -627,48 +652,63 @@ class Home extends Component {
                 b: newB
             })
         }
-        if (this.state.a === '' && this.state.operator === '' && this.state.b === '') {
+        if (this.state.a === '0' && this.state.operator === '' && this.state.b === '') {
             this.setState({
-                a: '-0'
+                a: '-' + this.state.a
             })
         }
         if (this.state.a === '-0' && this.state.operator === '' && this.state.b === '') {
             this.setState({
-                a: ''
+                a: '0'
             })
         }
     }
 
     powerSwitch() {
-        this.setState({ on: !this.state.on })
+        this.clear();
+        if (this.state.on) {
+            this.setState({ result: '', on: false })
+        }
+        else {
+            this.setState({ result: '0', on: true })
+        }
+        // this.setState({ on: !this.state.on })
     }
 
     render() {
+
+        console.log('a is:', this.state.a)
+        console.log('b is:', this.state.b)
+        console.log('result is', this.state.result)
+
+
         const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
-        const { a, b, operator, equals, result } = this.state;
-        const ready = () => {
-            if (a === '' && b === '' && operator === '' && equals === '' && result === '') {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+        // const { a, b, operator, equals, result } = this.state;
+        // const ready = () => {
+        //     if (a === '' && b === '' && operator === '' && equals === '' && result === '') {
+        //         return true;
+        //     }
+        //     else {
+        //         return false;
+        //     }
+        // }
 
         const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
         const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off'
+        // const initialScreen = this.state.on ? '0' : '';
 
         return (
-            <div style={{ paddingTop: '30px' }}>
+            <div>
                 <div className="wrapper" style={{ padding: '20px' }}>
                     <div className={deviceOn}>
-                        <div className={displayOn}>
+
+                        {/*<div className={displayOn}>
                             {
                                 ready() ? (
                                     <div>
-                                        <span>0</span>
+                                        <span>{initialScreen}</span>
                                     </div>
                                 ) : (
                                         <div>
@@ -680,6 +720,16 @@ class Home extends Component {
                                         </div>
                                     )
                             }
+                        </div>*/}
+
+                        <div className={displayOn}>
+                            <div>
+                                <span>{this.state.a}</span>
+                                <span>{this.state.operator}</span>
+                                <span>{this.state.b}</span>
+                                <span>{this.state.equals}</span>
+                                <span>{this.state.result}</span>
+                            </div>
                         </div>
 
                         <div className={`${powerOn} power`} onClick={powerSwitch}>⏻</div>
