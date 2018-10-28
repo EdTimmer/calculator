@@ -530,8 +530,11 @@ class Home extends Component {
         }
 
         //division
-        else if (this.state.operator === ' / ' && this.state.b === '') {
+        else if (this.state.operator === ' / ' && this.state.b === '' && this.state.a !== '0') {
             this.setState({ b: this.state.a, equals: ' = ', result: '1' })
+        }
+        else if (this.state.operator === ' / ' && this.state.b === '' && this.state.a === '0') {
+            this.setState({ b: this.state.a, equals: ' = ', result: 'WIPE DISC START' })
         }
         else if (this.state.operator === ' / ' && this.state.b !== '' && this.state.b !== '0') {
             const getResult = async () => {
