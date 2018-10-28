@@ -7,6 +7,9 @@ import NumberButton from './Buttons/NumberButton';
 import EqualsButton from './Buttons/EqualsButton';
 import jspfpc from 'js-float-calculation';
 // var jspfpc = require("js-float-calculation");
+import power1 from "../images/power1.png";
+import power2 from "../images/power2.png"
+import bannerImg from "../images/banner1.jpg"
 
 class Home extends Component {
     constructor() {
@@ -291,7 +294,7 @@ class Home extends Component {
 
     }
     clear() {
-        this.setState({ a: '', b: '', operator: '', equals: '', result: '0' })
+        this.setState({ a: '', b: '', operator: '', equals: '', result: '' })
     }
 
     plus() {
@@ -471,7 +474,7 @@ class Home extends Component {
                 .then((res) => {
                     this.setState({
                         equals: ' = ',
-                        result: ` ${res} `,
+                        result: `${res}`,
                     })
                 })
         }
@@ -488,17 +491,30 @@ class Home extends Component {
                 .then((res) => {
                     this.setState({
                         equals: ' = ',
-                        result: ` ${res} `,
+                        result: `${res}`,
                     })
                 })
         }
 
         //multiplication
         else if (this.state.operator === ' ✕ ' && this.state.b === '') {
-            const f1 = parseFloat(this.state.a);
-            const f2 = f1;
-            const f3 = f1.mul(f2)
-            this.setState({ b: this.state.a, equals: ' = ', result: f3 })
+            // const f1 = parseFloat(this.state.a);
+            // const f2 = parseFloat(this.state.a);
+            // const f3 = f1.mul(f2);
+            // const result = f3.toString();
+            // alert(result.length)
+            // this.setState({ b: this.state.a, equals: ' = ', result: f3 })
+
+            const getResult = async (a, b) => {
+                return this.selectOperation(a, b);
+            }
+            getResult(this.state.a, this.state.a)
+                .then((res) => this.setState({
+                    a: this.state.a,
+                    operator: ' ✕ ',
+                    b: this.state.a,
+                    result: `${res}`
+                }))
         }
         else if (this.state.a !== '' && this.state.operator === ' ✕ ' && this.state.b !== '') {
             const getResult = async () => {
@@ -508,7 +524,7 @@ class Home extends Component {
                 .then((res) => {
                     this.setState({
                         equals: ' = ',
-                        result: ` ${res} `,
+                        result: `${res}`,
                     })
                 })
         }
@@ -525,7 +541,7 @@ class Home extends Component {
                 .then((res) => {
                     this.setState({
                         equals: ' = ',
-                        result: ` ${res} `,
+                        result: `${res}`,
                     })
                 })
         }
@@ -535,7 +551,7 @@ class Home extends Component {
                 b: '',
                 operator: '',
                 equals: '',
-                result: 'SELF-DESTRUCT SEQUENCE ACTIVATED'
+                result: 'WIPE DISC START'
             })
         }
     }
@@ -627,59 +643,87 @@ class Home extends Component {
     }
 
     changeSign() {
-        if (this.state.a[0] === '-' && this.state.operator === '' && this.state.b === '') {
-            const newA = this.state.a.substr(1)
-            this.setState({
-                a: newA
-            })
+        if (this.state.result) {
+            if (this.state.result.includes('-')) {
+                const withoutMinus = this.state.result.substr(1);
+                this.setState({
+                    a: withoutMinus,
+                    operator: '',
+                    b: '',
+                    equals: '',
+                    result: ''
+                })
+            }
+            else {
+                // const withMinus = this.state.result.substr(1);
+                this.setState({
+                    a: '-' + this.state.result,
+                    operator: '',
+                    b: '',
+                    equals: '',
+                    result: ''
+                })
+            }
         }
-        if (this.state.a[0] !== '-' && this.state.operator === '' && this.state.b === '') {
-            const newA = '-' + this.state.a
-            this.setState({
-                a: newA
-            })
-        }
+        else {
+            if (this.state.a[0] === '-' && this.state.operator === '' && this.state.b === '') {
+                const newA = this.state.a.substr(1)
+                this.setState({
+                    a: newA
+                })
+            }
+            if (this.state.a[0] !== '-' && this.state.operator === '' && this.state.b === '') {
+                const newA = '-' + this.state.a
+                this.setState({
+                    a: newA
+                })
+            }
 
-        if (this.state.b[0] === '-' && this.state.operator !== '' && this.state.a !== '') {
-            const newB = this.state.b.substr(1)
-            this.setState({
-                b: newB
-            })
-        }
-        if (this.state.b[0] !== '-' && this.state.operator !== '' && this.state.a !== '') {
-            const newB = '-' + this.state.b
-            this.setState({
-                b: newB
-            })
-        }
-        if (this.state.a === '0' && this.state.operator === '' && this.state.b === '') {
-            this.setState({
-                a: '-' + this.state.a
-            })
-        }
-        if (this.state.a === '-0' && this.state.operator === '' && this.state.b === '') {
-            this.setState({
-                a: '0'
-            })
+            if (this.state.b[0] === '-' && this.state.operator !== '' && this.state.a !== '') {
+                const newB = this.state.b.substr(1)
+                this.setState({
+                    b: newB
+                })
+            }
+            if (this.state.b[0] !== '-' && this.state.operator !== '' && this.state.a !== '') {
+                const newB = '-' + this.state.b
+                this.setState({
+                    b: newB
+                })
+            }
+            if (this.state.a === '0' && this.state.operator === '' && this.state.b === '') {
+                this.setState({
+                    a: '-' + this.state.a
+                })
+            }
+            if (this.state.a === '-0' && this.state.operator === '' && this.state.b === '') {
+                this.setState({
+                    a: '0'
+                })
+            }
         }
     }
 
     powerSwitch() {
         this.clear();
+        let audio = new Audio("button1.wav");
+        // if (this.state.soundOn) {
+        audio.play();
+        // }
         if (this.state.on) {
-            this.setState({ result: '', on: false })
+            this.setState({ on: false })
         }
         else {
-            this.setState({ result: '0', on: true })
+            this.setState({ on: true })
         }
         // this.setState({ on: !this.state.on })
     }
 
     render() {
 
-        console.log('a is:', this.state.a)
-        console.log('b is:', this.state.b)
-        console.log('result is', this.state.result)
+        // console.log('a is:', this.state.a)
+        // console.log('b is:', this.state.b)
+        // console.log('result is', this.state.result)
         const truncatedResult = () => {
             if (this.state.result.length > 10) {
                 const newResult = parseFloat(this.state.result).toExponential();
@@ -691,44 +735,20 @@ class Home extends Component {
         }
 
         const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
-        // const { a, b, operator, equals, result } = this.state;
-        // const ready = () => {
-        //     if (a === '' && b === '' && operator === '' && equals === '' && result === '') {
-        //         return true;
-        //     }
-        //     else {
-        //         return false;
-        //     }
-        // }
 
         const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
+        const powerBtn = this.state.on ? power1 : power2;
+        const banner = this.state.on ? (<span>tron calculator</span>) : null
+        const btnOpacity = this.state.on ? "1.0" : "0.4";
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
+        const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
         const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off'
-        // const initialScreen = this.state.on ? '0' : '';
 
         return (
-            <div>
-                <div className="wrapper" style={{ padding: '20px' }}>
+            <div className="wrapper bgimg-1">
+                <div className="wrapper-calculator" style={{ padding: '20px' }}>
                     <div className={deviceOn}>
-
-                        {/*<div className={displayOn}>
-                            {
-                                ready() ? (
-                                    <div>
-                                        <span>{initialScreen}</span>
-                                    </div>
-                                ) : (
-                                        <div>
-                                            <span>{this.state.a}</span>
-                                            <span>{this.state.operator}</span>
-                                            <span>{this.state.b}</span>
-                                            <span>{this.state.equals}</span>
-                                            <span>{this.state.result}</span>
-                                        </div>
-                                    )
-                            }
-                        </div>*/}
 
                         <div className={displayOn}>
                             <div className="innerDisplay">
@@ -736,16 +756,26 @@ class Home extends Component {
                                 <span>{this.state.operator}</span>
                                 <span>{this.state.b}</span>
                                 <span>{this.state.equals}</span>
+                                <br />
+                                <span>{this.state.result}</span>
                                 {/*<span>{this.state.result}</span>*/}
                             </div>
-                            <br />
-                            <div>
-                                {/*<span>{truncatedResult}</span>*/}
+                            {/*<br />
+                            <div style={{textAlign: "left"}}>
                                 <span>{this.state.result}</span>
-                            </div>
+                            </div>*/}
                         </div>
 
-                        <div className={`${powerOn} power`} onClick={powerSwitch}>⏻</div>
+                        {/*<div className={`${powerOn} power`} onClick={powerSwitch}></div>*/}
+
+                        <div className="banner">
+                            {/*<img src={banner} height={60} />*/}
+                            <span>{banner}</span>
+                        </div>
+                        <div className="power" style={{ textAlign: 'center' }}>
+                            <img src={powerBtn} width={70} onClick={powerSwitch} />
+                        </div>
+
 
                         <div className={`${buttonOn} ac`} onClick={clear}>ac</div>
                         <div className={`${buttonOn} percent`} onClick={getPercentage}>%</div>
@@ -769,7 +799,7 @@ class Home extends Component {
                         <div className={`${buttonOn} zero`} onClick={zero}>0</div>
                         <div className={`${buttonOn} dot`} onClick={dot}>.</div>
                         <div className={`${buttonOn} plusminus`} onClick={changeSign}>+/-</div>
-                        <div className={`${buttonOn} equals`} onClick={calculate}>=</div>
+                        <div className={`${equalsButtonOn} equals`} onClick={calculate}><span>=</span></div>
 
                     </div>
                 </div>
