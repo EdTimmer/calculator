@@ -748,7 +748,7 @@ class Home extends Component {
         return (
             <div className="wrapper bgimg-1">
                 <div className="wrapper-calculator" style={{ padding: '20px' }}>
-                    <div className={deviceOn}>
+                    <div className={`${deviceOn} case-image`}>
 
                         <div className={displayOn}>
                             <div className="innerDisplay">
