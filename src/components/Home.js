@@ -7,6 +7,8 @@ import NumberButton from './Buttons/NumberButton';
 import EqualsButton from './Buttons/EqualsButton';
 import jspfpc from 'js-float-calculation';
 // var jspfpc = require("js-float-calculation");
+import { additionFn, subtractionFn, multiplicationFn, divisionFn, selectOperation } from './functions/basicCalculations';
+
 import power1 from "../images/power1.png";
 import power2 from "../images/power2.png"
 import bannerImg from "../images/banner1.jpg"
@@ -20,7 +22,8 @@ class Home extends Component {
             operator: '',
             equals: '',
             result: '',
-            on: false
+            on: false,
+            opacity: 0
         }
         this.zero = this.zero.bind(this);
         this.one = this.one.bind(this);
@@ -42,51 +45,13 @@ class Home extends Component {
         this.getPercentage = this.getPercentage.bind(this);
         this.changeSign = this.changeSign.bind(this);
         this.powerSwitch = this.powerSwitch.bind(this);
-        this.additionFn = this.additionFn.bind(this);
-        this.subtractionFn = this.subtractionFn.bind(this);
-        this.multiplicationFn = this.multiplicationFn.bind(this);
-        this.divisionFn = this.divisionFn.bind(this);
-        this.selectOperation = this.selectOperation.bind(this);
+        // this.additionFn = this.additionFn.bind(this);
+        // this.subtractionFn = this.subtractionFn.bind(this);
+        // this.multiplicationFn = this.multiplicationFn.bind(this);
+        // this.divisionFn = this.divisionFn.bind(this);
+        // this.selectOperation = this.selectOperation.bind(this);
     }
 
-    additionFn(a, b) {
-        const f1 = parseFloat(a);
-        const f2 = parseFloat(b);
-        const f3 = f1.add(f2)
-        return f3;
-    }
-    subtractionFn(a, b) {
-        const f1 = parseFloat(a);
-        const f2 = parseFloat(b);
-        const f3 = f1.sub(f2);
-        return f3;
-    }
-    multiplicationFn(a, b) {
-        const f1 = parseFloat(a);
-        const f2 = parseFloat(b);
-        const f3 = f1.mul(f2);
-        return f3;
-    }
-    divisionFn(a, b) {
-        const f1 = parseFloat(a);
-        const f2 = parseFloat(b);
-        const f3 = f1.div(f2);
-        return f3;
-    }
-    selectOperation(a, b, operator) {
-        if (this.state.operator === ' + ') {
-            return this.additionFn(a, b)
-        }
-        if (this.state.operator === ' - ') {
-            return this.subtractionFn(a, b)
-        }
-        if (this.state.operator === ' ✕ ') {
-            return this.multiplicationFn(a, b)
-        }
-        if (this.state.operator === ' / ') {
-            return this.divisionFn(a, b)
-        }
-    }
     zero() {
         if (this.state.result) {
             this.clear();
@@ -300,7 +265,7 @@ class Home extends Component {
     plus() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return this.selectOperation(a, b);
+                return selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -338,7 +303,7 @@ class Home extends Component {
     minus() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return this.selectOperation(a, b);
+                return selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -376,7 +341,7 @@ class Home extends Component {
     star() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return this.selectOperation(a, b);
+                return selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -414,7 +379,7 @@ class Home extends Component {
     slash() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return this.selectOperation(a, b);
+                return selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -467,7 +432,7 @@ class Home extends Component {
         }
         else if (this.state.a !== '' && this.state.operator === ' + ' && this.state.b !== '') {
             const getResult = async () => {
-                return this.additionFn(this.state.a, this.state.b);
+                return additionFn(this.state.a, this.state.b);
             }
             getResult()
                 .then(console.log('getResult got called'))
@@ -485,7 +450,7 @@ class Home extends Component {
         }
         else if (this.state.a !== '' && this.state.operator === ' - ' && this.state.b !== '') {
             const getResult = async () => {
-                return this.subtractionFn(this.state.a, this.state.b);
+                return subtractionFn(this.state.a, this.state.b);
             }
             getResult()
                 .then((res) => {
@@ -498,15 +463,8 @@ class Home extends Component {
 
         //multiplication
         else if (this.state.operator === ' ✕ ' && this.state.b === '') {
-            // const f1 = parseFloat(this.state.a);
-            // const f2 = parseFloat(this.state.a);
-            // const f3 = f1.mul(f2);
-            // const result = f3.toString();
-            // alert(result.length)
-            // this.setState({ b: this.state.a, equals: ' = ', result: f3 })
-
             const getResult = async (a, b) => {
-                return this.selectOperation(a, b);
+                return selectOperation(a, b);
             }
             getResult(this.state.a, this.state.a)
                 .then((res) => this.setState({
@@ -518,7 +476,7 @@ class Home extends Component {
         }
         else if (this.state.a !== '' && this.state.operator === ' ✕ ' && this.state.b !== '') {
             const getResult = async () => {
-                return this.multiplicationFn(this.state.a, this.state.b);
+                return multiplicationFn(this.state.a, this.state.b);
             }
             getResult()
                 .then((res) => {
@@ -538,7 +496,7 @@ class Home extends Component {
         }
         else if (this.state.operator === ' / ' && this.state.b !== '' && this.state.b !== '0') {
             const getResult = async () => {
-                return this.divisionFn(this.state.a, this.state.b);
+                return divisionFn(this.state.a, this.state.b);
             }
             getResult()
                 .then((res) => {
@@ -561,8 +519,7 @@ class Home extends Component {
     getPercentage() {
         if (this.state.result !== '') {
             const percentage = (res) => {
-                return this.divisionFn(res, 100)
-                // return parseFloat(res) / 100;
+                return divisionFn(res, 100)
             }
             const currentResult = this.state.result
             this.setState({
@@ -575,8 +532,7 @@ class Home extends Component {
         }
         else if (this.state.a !== '' && this.state.b === '') {
             const percentage = (a) => {
-                return this.divisionFn(a, 100)
-                // return parseFloat(a) / 100;
+                return divisionFn(a, 100)
             }
             const numA = this.state.a
             this.setState({
@@ -589,7 +545,7 @@ class Home extends Component {
         }
         else if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
 
-            const newB = this.multiplicationFn(this.divisionFn(this.state.a, 100), this.state.b)
+            const newB = multiplicationFn(divisionFn(this.state.a, 100), this.state.b)
             // const newB = (this.state.a / 100) * this.state.b;
 
             //addition
@@ -598,7 +554,7 @@ class Home extends Component {
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: this.additionFn(this.state.a, newB)
+                    result: additionFn(this.state.a, newB)
                 })
             }
             //subtraction
@@ -611,7 +567,7 @@ class Home extends Component {
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: this.subtractionFn(this.state.a, newB)
+                    result: subtractionFn(this.state.a, newB)
                 })
             }
             //multiplication
@@ -624,7 +580,7 @@ class Home extends Component {
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: this.multiplicationFn(this.state.a, newB)
+                    result: multiplicationFn(this.state.a, newB)
                 })
             }
             //division
@@ -637,7 +593,7 @@ class Home extends Component {
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
-                    result: this.divisionFn(this.state.a, newB)
+                    result: divisionFn(this.state.a, newB)
                 })
             }
 
@@ -709,42 +665,29 @@ class Home extends Component {
 
     powerSwitch() {
         this.clear();
-        let audio = new Audio("button1.wav");
+        let audio = new Audio("../sounds/button1.wav");
         // if (this.state.soundOn) {
         audio.play();
         // }
         if (this.state.on) {
-            this.setState({ on: false })
+            this.setState({ on: false, opacity: 0 })
         }
         else {
-            this.setState({ on: true })
+            this.setState({ on: true, opacity: 1 })
         }
         // this.setState({ on: !this.state.on })
     }
 
     render() {
 
-        // console.log('a is:', this.state.a)
-        // console.log('b is:', this.state.b)
-        // console.log('result is', this.state.result)
-        // const truncatedResult = () => {
-        //     if (this.state.result.length > 10) {
-        //         const newResult = parseFloat(this.state.result).toExponential();
-        //         return newResult.toString();
-        //     }
-        //     else {
-        //         return this.state.result;
-        //     }
-        // }
-
         const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
 
         // const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
-        const powerBtn = this.state.on ? power1 : power2;
+        const powerBtn = this.state.on ? power2 : power1;
         const banner = this.state.on ? (<span>tron calculator</span>) : null
         // const btnOpacity = this.state.on ? "1.0" : "0.4";
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
-        const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-off';
+        const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-equals-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
         const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off'
 
@@ -760,7 +703,7 @@ class Home extends Component {
                                 <span>{this.state.b}</span>
                                 <span>{this.state.equals}</span>
                                 <br />
-                                <span>{this.state.result}</span>
+                                <span style={{ color: 'red' }}>{this.state.result}</span>
                                 {/*<span>{this.state.result}</span>*/}
                             </div>
                             {/*<br />
@@ -773,36 +716,36 @@ class Home extends Component {
 
                         <div className="banner">
                             {/*<img src={banner} height={60} />*/}
-                            <span>{banner}</span>
+                            <span>tron calculator</span>
                         </div>
                         <div className="power" style={{ textAlign: 'center' }}>
                             <img src={powerBtn} width={70} onClick={powerSwitch} />
                         </div>
 
 
-                        <div className={`${buttonOn} ac`} onClick={clear}>ac</div>
-                        <div className={`${buttonOn} percent`} onClick={getPercentage}>%</div>
-                        <div className={`${buttonOn} slash`} onClick={slash}>/</div>
-                        <div className={`${buttonOn} star`} onClick={star}>✕</div>
+                        <div className={`${buttonOn} ac`} onClick={clear}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac</span></div>
+                        <div className={`${buttonOn} percent`} onClick={getPercentage}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>%</span></div>
+                        <div className={`${buttonOn} slash`} onClick={slash}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>/</span></div>
+                        <div className={`${buttonOn} star`} onClick={star}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>✕</span></div>
 
-                        <div className={`${buttonOn} seven`} onClick={seven}>7</div>
-                        <div className={`${buttonOn} eight`} onClick={eight}>8</div>
-                        <div className={`${buttonOn} nine`} onClick={nine}>9</div>
-                        <div className={`${buttonOn} minus`} onClick={minus}>-</div>
+                        <div className={`${buttonOn} seven`} onClick={seven}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>7</span></div>
+                        <div className={`${buttonOn} eight`} onClick={eight}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>8</span></div>
+                        <div className={`${buttonOn} nine`} onClick={nine}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>9</span></div>
+                        <div className={`${buttonOn} minus`} onClick={minus}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>-</span></div>
 
-                        <div className={`${buttonOn} four`} onClick={four}>4</div>
-                        <div className={`${buttonOn} five`} onClick={five}>5</div>
-                        <div className={`${buttonOn} six`} onClick={six}>6</div>
-                        <div className={`${buttonOn} plus`} onClick={plus}>+</div>
+                        <div className={`${buttonOn} four`} onClick={four}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>4</span></div>
+                        <div className={`${buttonOn} five`} onClick={five}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>5</span></div>
+                        <div className={`${buttonOn} six`} onClick={six}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>6</span></div>
+                        <div className={`${buttonOn} plus`} onClick={plus}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>+</span></div>
 
-                        <div className={`${buttonOn} one`} onClick={one}>1</div>
-                        <div className={`${buttonOn} two`} onClick={two}>2</div>
-                        <div className={`${buttonOn} three`} onClick={three}>3</div>
+                        <div className={`${buttonOn} one`} onClick={one}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>1</span></div>
+                        <div className={`${buttonOn} two`} onClick={two}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>2</span></div>
+                        <div className={`${buttonOn} three`} onClick={three}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>3</span></div>
 
-                        <div className={`${buttonOn} zero`} onClick={zero}>0</div>
-                        <div className={`${buttonOn} dot`} onClick={dot}>.</div>
-                        <div className={`${buttonOn} plusminus`} onClick={changeSign}>+/-</div>
-                        <div className={`${equalsButtonOn} equals`} onClick={calculate}><span>=</span></div>
+                        <div className={`${buttonOn} zero`} onClick={zero}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>0</span></div>
+                        <div className={`${buttonOn} dot`} onClick={dot}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>.</span></div>
+                        <div className={`${buttonOn} plusminus`} onClick={changeSign}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>+/-</span></div>
+                        <div className={`${equalsButtonOn} equals`} onClick={calculate}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>=</span></div>
 
                     </div>
                 </div>
