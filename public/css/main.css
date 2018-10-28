@@ -162,6 +162,22 @@ body {
   box-shadow: 0 0 10px #9ecaed; 
   /* box-shadow: 0 0 10px #0c75d7;  */
 }
+.box-on:hover {
+  background-color: rgb(43, 1, 1);
+  opacity: 1;
+}
+.box-off {
+  background-color: black;
+  color: black;
+  border-radius: 50px;
+  padding: 20px;
+  font-size: 150%;
+  text-align: center;
+  border: 2px solid grey;
+  /* border-radius: 7px; */
+  outline: none;
+	/* box-shadow: 0 0 10px #9ecaed;  */
+}
 
 .box-equals-on {
   background-color: black;
@@ -196,20 +212,10 @@ body {
   /* box-shadow: 0 0 10px #9ecaed;  */
   /* box-shadow: 0 0 10px #0c75d7;  */
 }
-
-.box-off {
-  background-color: black;
-  color: black;
-  border-radius: 50px;
-  padding: 20px;
-  font-size: 150%;
-  text-align: center;
-  border: 2px solid grey;
-  /* border-radius: 7px; */
-  outline: none;
-	/* box-shadow: 0 0 10px #9ecaed;  */
+.box-equals-on:hover {
+  background-color: rgb(43, 1, 1);
+  opacity: 1;
 }
-
 /* .power-btn {
   background-color: #444;
   color: #fff;

@@ -718,9 +718,12 @@ class Home extends Component {
                             {/*<img src={banner} height={60} />*/}
                             <span>tron calculator</span>
                         </div>
-                        <div className="power" style={{ textAlign: 'center' }}>
-                            <img src={powerBtn} width={70} onClick={powerSwitch} />
+                        <div>
+                            <div className="power" style={{ textAlign: 'center' }}>
+                                <img src={powerBtn} width={70} onClick={powerSwitch} />
+                            </div>
                         </div>
+                        
 
 
                         <div className={`${buttonOn} ac`} onClick={clear}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac</span></div>
