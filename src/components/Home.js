@@ -724,22 +724,22 @@ class Home extends Component {
         // console.log('a is:', this.state.a)
         // console.log('b is:', this.state.b)
         // console.log('result is', this.state.result)
-        const truncatedResult = () => {
-            if (this.state.result.length > 10) {
-                const newResult = parseFloat(this.state.result).toExponential();
-                return newResult.toString();
-            }
-            else {
-                return this.state.result;
-            }
-        }
+        // const truncatedResult = () => {
+        //     if (this.state.result.length > 10) {
+        //         const newResult = parseFloat(this.state.result).toExponential();
+        //         return newResult.toString();
+        //     }
+        //     else {
+        //         return this.state.result;
+        //     }
+        // }
 
         const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
 
-        const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
+        // const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
         const powerBtn = this.state.on ? power1 : power2;
         const banner = this.state.on ? (<span>tron calculator</span>) : null
-        const btnOpacity = this.state.on ? "1.0" : "0.4";
+        // const btnOpacity = this.state.on ? "1.0" : "0.4";
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
         const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
