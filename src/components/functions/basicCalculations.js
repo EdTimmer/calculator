@@ -23,17 +23,3 @@ export const divisionFn = (a, b) => {
   return f3;
 }
 
-export const selectOperation = (a, b, operator) => {
-  if (this.state.operator === ' + ') {
-      return additionFn(a, b)
-  }
-  if (this.state.operator === ' - ') {
-      return subtractionFn(a, b)
-  }
-  if (this.state.operator === ' ✕ ') {
-      return multiplicationFn(a, b)
-  }
-  if (this.state.operator === ' / ') {
-      return divisionFn(a, b)
-  }
-}

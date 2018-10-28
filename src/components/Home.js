@@ -7,7 +7,7 @@ import NumberButton from './Buttons/NumberButton';
 import EqualsButton from './Buttons/EqualsButton';
 import jspfpc from 'js-float-calculation';
 // var jspfpc = require("js-float-calculation");
-import { additionFn, subtractionFn, multiplicationFn, divisionFn, selectOperation } from './functions/basicCalculations';
+import { additionFn, subtractionFn, multiplicationFn, divisionFn } from './functions/basicCalculations';
 
 import power1 from "../images/power1.png";
 import power2 from "../images/power2.png"
@@ -49,7 +49,22 @@ class Home extends Component {
         // this.subtractionFn = this.subtractionFn.bind(this);
         // this.multiplicationFn = this.multiplicationFn.bind(this);
         // this.divisionFn = this.divisionFn.bind(this);
-        // this.selectOperation = this.selectOperation.bind(this);
+        this.selectOperation = this.selectOperation.bind(this);
+    }
+
+    selectOperation(a, b, operator) {
+        if (this.state.operator === ' + ') {
+            return additionFn(a, b)
+        }
+        if (this.state.operator === ' - ') {
+            return subtractionFn(a, b)
+        }
+        if (this.state.operator === ' ✕ ') {
+            return multiplicationFn(a, b)
+        }
+        if (this.state.operator === ' / ') {
+            return divisionFn(a, b)
+        }
     }
 
     zero() {
@@ -265,7 +280,7 @@ class Home extends Component {
     plus() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return selectOperation(a, b);
+                return this.selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -303,7 +318,7 @@ class Home extends Component {
     minus() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return selectOperation(a, b);
+                return this.selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -341,7 +356,7 @@ class Home extends Component {
     star() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return selectOperation(a, b);
+                return this.selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -379,7 +394,7 @@ class Home extends Component {
     slash() {
         if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
             const getResult = async (a, b) => {
-                return selectOperation(a, b);
+                return this.selectOperation(a, b);
             }
             getResult(this.state.a, this.state.b)
                 .then((res) => this.setState({
@@ -464,7 +479,7 @@ class Home extends Component {
         //multiplication
         else if (this.state.operator === ' ✕ ' && this.state.b === '') {
             const getResult = async (a, b) => {
-                return selectOperation(a, b);
+                return this.selectOperation(a, b);
             }
             getResult(this.state.a, this.state.a)
                 .then((res) => this.setState({
@@ -723,7 +738,7 @@ class Home extends Component {
                                 <img src={powerBtn} width={70} onClick={powerSwitch} />
                             </div>
                         </div>
-                        
+
 
 
                         <div className={`${buttonOn} ac`} onClick={clear}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac</span></div>
