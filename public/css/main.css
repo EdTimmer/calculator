@@ -34,7 +34,8 @@ body {
 .wrapper-calculator {
   /* display: -ms-grid; */
   display: grid;
-  grid-column: 2/3;
+  grid-column: 2 / 3;
+  grid-row: 1;
   /* -ms-grid-columns: 100px 100px 100px 100px; */
   grid-template-columns: 130px 130px 130px 130px;
   grid-gap: 10px;
@@ -54,7 +55,7 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-column: 1 / 5;
-  grid-row: row 1;
+  grid-row: 1;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -75,7 +76,7 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-column: 1 / 5;
-  grid-row: row 1;
+  grid-row: 1;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
