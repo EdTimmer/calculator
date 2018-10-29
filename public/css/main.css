@@ -16,6 +16,7 @@ body {
 .case-image {
   background-image: url("../images/silver2.jpg");
   background-position: center;
+  /* height: 1000px; */
   /* opacity: 0.6; */
   /* height: 900px; */
   /* min-height: 100%; */
@@ -40,6 +41,21 @@ body {
   grid-gap: 10px;
   background-color: transparent;
   color: #444;
+}
+
+.left-pane {
+  /* display: -ms-grid; */
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
+  /* -ms-grid-columns: 100px 100px 100px 100px; */
+  /* grid-template-columns: 130px 130px 130px 130px; */
+  grid-gap: 10px;
+  background-color: transparent;
+  font-size: 70px;
+  padding-top: 40px;
+  /* color: white; */
+  /* width: 900px; */
 }
 
 .wrapper-calculator {
@@ -73,7 +89,8 @@ body {
   border: 2px solid  #9ecaed;
   border-radius: 7px;
   outline: none;
-	box-shadow: 0 0 10px #9ecaed; 
+  box-shadow: 0 0 10px #9ecaed; 
+  height: 750px;
 }
 
 .deviceCase-off {
@@ -94,7 +111,8 @@ body {
   border: 2px solid grey;
   border-radius: 7px;
   outline: none;
-	/* box-shadow: 0 0 10px #9ecaed;  */
+  /* box-shadow: 0 0 10px #9ecaed;  */
+  height: 750px;
 }
 
 .boxDisplay-on {
@@ -112,10 +130,10 @@ body {
   grid-column: 1 / 5;
   -ms-grid-row: 1;
   grid-row: 1;
-  border: 2px solid  #9ecaed;
+  border: 2px solid  #02fa38;
   border-radius: 7px;
   outline: none;
-  box-shadow: 0 0 10px #9ecaed; 
+  box-shadow: 0 0 10px #02fa38; 
   height: 80px;
   white-space: nowrap;
   overflow: hidden;
@@ -163,8 +181,13 @@ body {
   /* box-shadow: 0 0 10px #0c75d7;  */
 }
 .box-on:hover {
-  background-color: rgb(43, 1, 1);
+  /* background-color: rgb(43, 1, 1); */
+  border: 2px solid rgb(233, 4, 157);
+  box-shadow: 0 0 10px rgb(233, 4, 157); 
   opacity: 1;
+}
+.box-on:active {
+  background-color: rgb(233, 4, 157);
 }
 .box-off {
   background-color: black;
@@ -213,8 +236,13 @@ body {
   /* box-shadow: 0 0 10px #0c75d7;  */
 }
 .box-equals-on:hover {
-  background-color: rgb(43, 1, 1);
+  /* background-color: rgb(43, 1, 1); */
+  border: 2px solid rgb(233, 4, 157);
+  box-shadow: 0 0 10px rgb(233, 4, 157); 
   opacity: 1;
+}
+.box-equals-on:active {
+  background-color: rgb(233, 4, 157);
 }
 /* .power-btn {
   background-color: #444;
@@ -293,6 +321,9 @@ body {
   grid-column: 4;
   -ms-grid-row: 2;
   grid-row: 2;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
 }
 
 .ac {
@@ -428,3 +459,47 @@ body {
   grid-row: 6 / 8;
 }
 
+/* NEW POWER BUTTON */
+
+.box-power-btn-on {
+  background-color: black;
+  /* color: lightblue; */
+  /* color: #9ecaed; */
+  /* color: #0c75d7; */
+  border-radius: 50%;
+  padding: 25px;
+  
+  width: 10px;
+  height: 10px;
+  /* font-size: 150%; */
+  text-align: center;
+  border: 2px solid #9ecaed;
+  /* border: 2px solid  #0c75d7; */
+  /* border-radius: 7px; */
+  outline: none;
+  box-shadow: 0 0 10px #9ecaed; 
+  /* box-shadow: 0 0 10px #0c75d7;  */
+  align-self: center;
+  justify-self: center;
+
+}
+/* .box-on:hover {
+  border: 2px solid red;
+  box-shadow: 0 0 10px red; 
+  opacity: 1;
+}
+.box-on:active {
+  background-color: red;
+} */
+.box-power-btn-off {
+  background-color: black;
+  /* color: black; */
+  border-radius: 50px;
+  padding: 10px;
+  /* font-size: 150%; */
+  text-align: center;
+  border: 2px solid grey;
+  /* border-radius: 7px; */
+  outline: none;
+	/* box-shadow: 0 0 10px #9ecaed;  */
+}

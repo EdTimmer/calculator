@@ -10,8 +10,12 @@ import jspfpc from 'js-float-calculation';
 import { additionFn, subtractionFn, multiplicationFn, divisionFn } from './functions/basicCalculations';
 
 import power1 from "../images/power1.png";
-import power2 from "../images/power2.png"
-import bannerImg from "../images/banner1.jpg"
+import power2 from "../images/power2.png";
+import bannerImg from "../images/banner1.jpg";
+import powerSound from "../sounds/button1.wav";
+import regularButtonSound from "../sounds/button-3.wav";
+import equalsButtonSound from "../sounds/button-10.wav";
+import Binary from './Binary';
 
 class Home extends Component {
     constructor() {
@@ -68,6 +72,9 @@ class Home extends Component {
     }
 
     zero() {
+        let audio = new Audio("../sounds/button-3.wav");
+        // if (this.state.soundOn) {
+        audio.play();
         if (this.state.result) {
             this.clear();
         }
@@ -431,7 +438,27 @@ class Home extends Component {
     }
 
     calculate() {
-        if (this.state.a !== '' && this.state.operator === '' && this.state.b === '') {
+        if (this.state.a === '0.' && this.state.operator === '' && this.state.b === '') {
+            // const newResult = this.state.a + '0';
+            this.setState({
+                a: '',
+                b: '',
+                operator: '',
+                equals: '',
+                result: '0'
+            })
+        }
+        else if (this.state.a[this.state.a.length - 1] === '.' && this.state.operator === '' && this.state.b === '') {
+            const newResult = this.state.a + '0';
+            this.setState({
+                a: '',
+                b: '',
+                operator: '',
+                equals: '',
+                result: newResult
+            })
+        }
+        else if (this.state.a !== '' && this.state.operator === '' && this.state.b === '') {
             const newResult = this.state.a;
             this.setState({
                 a: '',
@@ -708,6 +735,9 @@ class Home extends Component {
 
         return (
             <div className="wrapper bgimg-1">
+                <div className="left-pane">
+                    {/*<Binary a={this.state.a} b={this.state.b} result={this.state.result} />*/}
+                </div>
                 <div className="wrapper-calculator" style={{ padding: '20px' }}>
                     <div className={`${deviceOn} case-image`}>
 
@@ -718,7 +748,7 @@ class Home extends Component {
                                 <span>{this.state.b}</span>
                                 <span>{this.state.equals}</span>
                                 <br />
-                                <span style={{ color: 'red' }}>{this.state.result}</span>
+                                <span style={{ color: 'rgb(233, 4, 157)' }}>{this.state.result}</span>
                                 {/*<span>{this.state.result}</span>*/}
                             </div>
                             {/*<br />
@@ -734,8 +764,18 @@ class Home extends Component {
                             <span>tron calculator</span>
                         </div>
                         <div>
-                            <div className="power" style={{ textAlign: 'center' }}>
-                                <img src={powerBtn} width={70} onClick={powerSwitch} />
+                            <div className="power">
+                                <img src={powerBtn} width={70} style={{ paddingTop: "5px" }} onClick={powerSwitch} />
+                                {
+                                    this.state.on ? (<audio src={powerSound} autoPlay />) : null
+                                }
+                                {
+                                    this.state.on ? null : (<audio src={powerSound} autoPlay />)
+                                }
+                                {/*<audio src={powerSound} autoPlay />*/}
+                                {/*<div className="box-power-btn-on">
+  
+                                </div>*/}
                             </div>
                         </div>
 
