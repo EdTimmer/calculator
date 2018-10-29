@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Button } from '@material-ui/core';
+import ReactAudioPlayer from 'react-audio-player';
 
 import NumberButton from './Buttons/NumberButton';
 // import ZeroButton from './Buttons/ZeroButton';
@@ -28,7 +29,8 @@ class Home extends Component {
             equals: '',
             result: '',
             on: false,
-            opacity: 0
+            opacity: 0,
+            // ac: false
         }
         this.zero = this.zero.bind(this);
         this.one = this.one.bind(this);
@@ -56,7 +58,13 @@ class Home extends Component {
         // this.divisionFn = this.divisionFn.bind(this);
         this.selectOperation = this.selectOperation.bind(this);
         // this.play = this.play.bind(this);
+        // this.audio = document.createElement('audio');
+        // this.play = this.play.bind(this);
+        // this.audio.src = "../sounds/button-3.wav";
     }
+    // play() {
+    //     this.audio.play();
+    // }
 
     selectOperation(a, b, operator) {
         if (this.state.operator === ' + ') {
@@ -74,9 +82,10 @@ class Home extends Component {
     }
 
     zero() {
-        let audio = new Audio("../sounds/button-3.wav");
+        // let audio = new Audio("../sounds/button-3.wav");
         // if (this.state.soundOn) {
-        audio.play();
+        // audio.play();
+        // this.play()
         if (this.state.result) {
             this.clear();
         }
@@ -738,7 +747,8 @@ class Home extends Component {
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
         const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-equals-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
-        const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off'
+        const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off';
+        const acPressed = this.state.ac ? '../sounds/button-3.wav' : null
 
         return (
             <div className="wrapper bgimg-1">
@@ -775,12 +785,12 @@ class Home extends Component {
                         <div>
                             <div className="power">
                                 <img src={powerBtn} width={70} style={{ paddingTop: "5px" }} onClick={powerSwitch} />
-                                {
+                                {/* {
                                     this.state.on ? (<audio src={powerSound} autoPlay />) : null
                                 }
                                 {
                                     this.state.on ? null : (<audio src={powerSound} autoPlay />)
-                                }
+                                }  */}
                                 {/*<audio src={powerSound} autoPlay />*/}
                                 {/*<div className="box-power-btn-on">
   
@@ -790,7 +800,14 @@ class Home extends Component {
 
 
 
-                        <div className={`${buttonOn} ac`} onClick={clear}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac</span></div>
+                        <div className={`${buttonOn} ac`} onClick={clear}>
+                            {/* {
+                                this.state.ac ? (<audio src="../sounds/button-3.wav" autoPlay />) : null
+                            }  */}
+                            <span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac
+                        {/*<ReactAudioPlayer src="../sounds/button-3.wav" onPlay={true} />*/}
+                            </span>
+                        </div>
                         <div className={`${buttonOn} percent`} onClick={getPercentage}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>%</span></div>
                         <div className={`${buttonOn} slash`} onClick={slash}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>/</span></div>
                         <div className={`${buttonOn} star`} onClick={star}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>✕</span></div>

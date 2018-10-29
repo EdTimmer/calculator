@@ -19,8 +19,9 @@ class Binary extends Component {
     const { a, b, result } = this.props;
     const newA = a[0] === '-' ? a.substr(1, 10) : a.substr(0, 10);
     const newB = b[0] === '-' ? b.substr(1, 10) : b.substr(0, 10);
-    const newResult = result[0] === '-' ? result.substr(1, 10) : result.substr(0, 10);
-    
+    const newResult = result === '' ? '' : ((parseInt(result) + parseInt(result)) / 2);
+    const newResultSafe = newResult.toString().substr(0, 10);
+
     return (
       <div style={{ textAlign: 'center' }}>
         <span style={{ color: 'white' }}>
@@ -32,7 +33,7 @@ class Binary extends Component {
         </span>
         <br />
         <span style={{ color: 'rgb(233, 4, 157)' }}>
-          {converter.convertToBinary(newResult)}
+          {converter.convertToBinary(newResultSafe)}
         </span>
       </div>
 
