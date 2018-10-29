@@ -19,7 +19,7 @@ class Binary extends Component {
     const { a, b, result } = this.props;
     const newA = a[0] === '-' ? a.substr(1, 10) : a.substr(0, 10);
     const newB = b[0] === '-' ? b.substr(1, 10) : b.substr(0, 10);
-    const newResult = result === '' ? '' : ((parseInt(result) + parseInt(result)) / 2);
+    const newResult = result === '' ? '' : (Math.abs(parseFloat(this.props.result)));
     const newResultSafe = newResult.toString().substr(0, 10);
 
     return (
