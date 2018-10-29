@@ -14,7 +14,7 @@ body {
 }
 
 .case-image {
-  background-image: url("../images/silver2.jpg");
+  background-image: url("../images/scratched.jpg");
   background-position: center;
   /* height: 1000px; */
   /* opacity: 0.6; */
@@ -68,6 +68,8 @@ body {
   grid-gap: 10px;
   background-color: transparent;
   color: #444;
+  padding: 40px;
+  
   /* width: 900px; */
 }
 

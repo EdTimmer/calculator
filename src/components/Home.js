@@ -54,6 +54,7 @@ class Home extends Component {
         // this.multiplicationFn = this.multiplicationFn.bind(this);
         // this.divisionFn = this.divisionFn.bind(this);
         this.selectOperation = this.selectOperation.bind(this);
+        // this.play = this.play.bind(this);
     }
 
     selectOperation(a, b, operator) {
@@ -707,9 +708,9 @@ class Home extends Component {
 
     powerSwitch() {
         this.clear();
-        let audio = new Audio("../sounds/button1.wav");
+        // let audio = new Audio("../sounds/button1.wav");
         // if (this.state.soundOn) {
-        audio.play();
+        // audio.play();
         // }
         if (this.state.on) {
             this.setState({ on: false, opacity: 0 })
@@ -719,6 +720,11 @@ class Home extends Component {
         }
         // this.setState({ on: !this.state.on })
     }
+
+    // play() {
+    //     const audio = document.getElementById("audio");
+    //     audio.play();
+    // }
 
     render() {
 
