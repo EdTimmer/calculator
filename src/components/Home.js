@@ -16,6 +16,7 @@ import powerSound from "../sounds/button1.wav";
 import regularButtonSound from "../sounds/button-3.wav";
 import equalsButtonSound from "../sounds/button-10.wav";
 import Binary from './Binary';
+import Quotes from './Quotes';
 
 class Home extends Component {
     constructor() {
@@ -742,7 +743,9 @@ class Home extends Component {
         return (
             <div className="wrapper bgimg-1">
                 <div className="left-pane">
-                    {/*<Binary a={this.state.a} b={this.state.b} result={this.state.result} />*/}
+                    <div className="inner-dispaly-binary" style={{ paddingTop: '80px' }}>
+                        <Binary a={this.state.a} b={this.state.b} result={this.state.result} />
+                    </div>
                 </div>
                 <div className="wrapper-calculator" style={{ padding: '20px' }}>
                     <div className={`${deviceOn} case-image`}>
@@ -812,6 +815,13 @@ class Home extends Component {
                         <div className={`${equalsButtonOn} equals`} onClick={calculate}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>=</span></div>
 
                     </div>
+                </div>
+                <div className="right-pane">
+                    <div style={{ paddingTop: '80px', paddingRight: '20px' }}>
+                        <Quotes result={this.state.result} />
+                    </div>
+
+
                 </div>
             </div>
         );

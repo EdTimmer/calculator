@@ -52,10 +52,34 @@ body {
   /* grid-template-columns: 130px 130px 130px 130px; */
   grid-gap: 10px;
   background-color: transparent;
-  font-size: 70px;
+  font-size: 40px;
   padding-top: 40px;
   /* color: white; */
   /* width: 900px; */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.inner-display-binary {
+  float: right;
+  /* padding-top: 50px; */
+}
+
+.right-pane {
+  /* display: -ms-grid; */
+  display: grid;
+  grid-column: 3;
+  grid-row: 1;
+  /* -ms-grid-columns: 100px 100px 100px 100px; */
+  /* grid-template-columns: 130px 130px 130px 130px; */
+  grid-gap: 10px;
+  background-color: transparent;
+  font-size: 30px;
+  padding-top: 40px;
+  /* color: white; */
+  /* width: 900px; */
+  white-space: wrap;  
+  color: white;
 }
 
 .wrapper-calculator {
@@ -92,7 +116,7 @@ body {
   border-radius: 7px;
   outline: none;
   box-shadow: 0 0 10px #9ecaed; 
-  height: 750px;
+  height: 80vh;
 }
 
 .deviceCase-off {
@@ -114,7 +138,7 @@ body {
   border-radius: 7px;
   outline: none;
   /* box-shadow: 0 0 10px #9ecaed;  */
-  height: 750px;
+  height: 80vh;
 }
 
 .boxDisplay-on {
