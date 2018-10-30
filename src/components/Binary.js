@@ -20,7 +20,7 @@ class Binary extends Component {
             {converter.convertToBinary(newB)}
           </span>
           <br />
-          <span style={{ color: 'rgb(170, 42, 255)' }}>
+          <span style={{ color: '#6dff8d' }}>
             {converter.convertToBinary(newResultSafe)}
           </span>
         </div>

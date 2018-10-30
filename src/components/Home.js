@@ -706,7 +706,7 @@ class Home extends Component {
                                             <span>{this.state.b}</span>
                                             <span>{this.state.equals}</span>
                                             <br />
-                                            <span style={{ color: 'rgb(170, 42, 255)' }}>{this.state.result}</span>
+                                            <span style={{ color: '#6dff8d' }}>{this.state.result}</span>
                                         </div>
                                     ) : (null)
                                 }
