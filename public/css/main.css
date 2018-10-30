@@ -18,24 +18,9 @@ body {
 .case-image {
   background-image: url("../images/scratched.jpg");
   background-position: center;
-  /* height: 1000px; */
-  /* opacity: 0.6; */
-  /* height: 900px; */
-  /* min-height: 100%; */
-  /* height: 100vh; */
-  /* min-width: 100wh; */
-  /* align-self: center; */
 }
 
-/* .display {
-  border: 1px solid grey;
-  width: 400px;
-  height: 30px;
-  text-align: right;
-  padding: 5px;
-} */
-
-/* grid */
+/* GRID */
 
 .wrapper {
   display: grid;
@@ -46,64 +31,45 @@ body {
 }
 
 .left-pane {
-  /* display: -ms-grid; */
   display: grid;
   grid-column: 1;
   grid-row: 1;
-  /* -ms-grid-columns: 100px 100px 100px 100px; */
-  /* grid-template-columns: 130px 130px 130px 130px; */
   grid-gap: 10px;
   background-color: transparent;
   font-size: 40px;
-  /* padding-top: 40px; */
   padding-top: 50%;
-  /* color: white; */
-  /* width: 900px; */
   white-space: nowrap;
   overflow: hidden;
 }
 
 .inner-display-binary {
   float: right;
-  /* padding-top: 50px; */
 }
 
 .right-pane {
-  /* display: -ms-grid; */
   display: grid;
   grid-column: 3;
   grid-row: 1;
-  /* -ms-grid-columns: 100px 100px 100px 100px; */
-  /* grid-template-columns: 130px 130px 130px 130px; */
   grid-gap: 10px;
   background-color: transparent;
   font-size: 30px;
   padding-top: 50%;
-  /* top: 50%; */
-  /* color: white; */
-  /* width: 900px; */
   white-space: wrap;  
   color: white;
 }
 
 .wrapper-calculator {
-  /* display: -ms-grid; */
   display: grid;
   grid-column: 2 / 3;
   grid-row: 1;
-  /* -ms-grid-columns: 100px 100px 100px 100px; */
   grid-template-columns: 130px 130px 130px 130px;
   grid-gap: 10px;
   background-color: transparent;
   color: #444;
   padding: 40px;
-  
-  /* width: 900px; */
 }
 
 .deviceCase-on {
-  /* background-color: black; */
-  /* background-image: url("../images/silver2.jpg"); */
   color: #fff;
   border-radius: 5px;
   padding: 40px;
@@ -120,12 +86,9 @@ body {
   border-radius: 7px;
   outline: none;
   box-shadow: 0 0 10px #9ecaed; 
-  /* height: 80vh; */
 }
 
 .deviceCase-off {
-  /* background-color: black; */
-  /* background-image: url("../images/silver2.jpg"); */
   color: #fff;
   border-radius: 5px;
   padding: 40px;
@@ -141,15 +104,10 @@ body {
   border: 2px solid grey;
   border-radius: 7px;
   outline: none;
-  /* box-shadow: 0 0 10px #9ecaed;  */
-  /* height: 80vh; */
 }
 
 .boxDisplay-on {
-  /* display: flex; */
-  /* background-color: rgb(14, 65, 18); */
-  background-image: url("../images/grid_ingame.png");
-  
+  background-image: url("../images/grid_ingame.png");  
   color: lightblue;
   border-radius: 5px;
   border: 1px solid grey;
@@ -168,7 +126,6 @@ body {
   height: 100px;
   white-space: nowrap;
   overflow: hidden;
-  /* text-overflow: clip; */
 }
 
 .innerDisplay {
@@ -191,31 +148,23 @@ body {
   border: 2px solid grey;
   border-radius: 7px;
   outline: none;
-  /* box-shadow: 0 0 10px #9ecaed;  */
   height: 100px;
 }
 
 .box-on {
   display: flex;
   background-color: black;
-  /* color: lightblue; */
   color: #9ecaed;
-  /* color: #0c75d7; */
   border-radius: 50px;
   padding: 20px;
   font-size: 150%;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
   border: 2px solid #9ecaed;
-  /* border: 2px solid  #0c75d7; */
-  /* border-radius: 7px; */
   outline: none;
   box-shadow: 0 0 10px #9ecaed; 
-  /* box-shadow: 0 0 10px #0c75d7;  */
 }
 .box-on:hover {
-  /* background-color: rgb(43, 1, 1); */
   border: 2px solid rgb(170, 42, 255);
   box-shadow: 0 0 10px rgb(170, 42, 255); 
   opacity: 1;
@@ -232,11 +181,8 @@ body {
   font-size: 150%;
   justify-content: center;
   align-items: center;
-  /* text-align: center; */
   border: 2px solid grey;
-  /* border-radius: 7px; */
   outline: none;
-	/* box-shadow: 0 0 10px #9ecaed;  */
 }
 
 .box-equals-on {
@@ -244,19 +190,13 @@ body {
   justify-content: center;
   align-items: center;
   background-color: black;
-  /* color: lightblue; */
   color: #9ecaed;
-  /* color: #0c75d7; */
   border-radius: 50px;
-  /* padding: 70px 20px 0 20px; */
   font-size: 150%;
   text-align: center;
   border: 2px solid #9ecaed;
-  /* border: 2px solid  #0c75d7; */
-  /* border-radius: 7px; */
   outline: none;
   box-shadow: 0 0 10px #9ecaed; 
-  /* box-shadow: 0 0 10px #0c75d7;  */
 }
 
 .box-equals-off {
@@ -264,22 +204,14 @@ body {
   justify-content: center;
   align-items: center;
   background-color: black;
-  /* color: lightblue; */
   color: #9ecaed;
-  /* color: #0c75d7; */
   border-radius: 50px;
-  /* padding: 70px 20px 0 20px; */
   font-size: 150%;
   text-align: center;
   border: 2px solid grey;
-  /* border: 2px solid  #0c75d7; */
-  /* border-radius: 7px; */
   outline: none;
-  /* box-shadow: 0 0 10px #9ecaed;  */
-  /* box-shadow: 0 0 10px #0c75d7;  */
 }
 .box-equals-on:hover {
-  /* background-color: rgb(43, 1, 1); */
   border: 2px solid rgb(170, 42, 255);
   box-shadow: 0 0 10px rgb(170, 42, 255); 
   opacity: 1;
@@ -287,17 +219,6 @@ body {
 .box-equals-on:active {
   background-color: rgb(170, 42, 255);
 }
-/* .power-btn {
-  background-color: #444;
-  color: #fff;
-  border-radius: 50%;
-  padding: 10px;
-  font-size: 150%;
-  text-align: center;
-  border: 2px solid  pink;
-  outline: none;
-	box-shadow: 0 0 10px pink; 
-} */
 
 .box-power-on {
   background-color: #444;
@@ -307,7 +228,6 @@ body {
   font-size: 150%;
   text-align: center;
   border: 2px solid  pink;
-  /* border-radius: 50px; */
   outline: none;
 	box-shadow: 0 0 10px pink; 
 }
@@ -320,9 +240,7 @@ body {
   font-size: 150%;
   text-align: center;
   border: 2px solid  grey;
-  /* border-radius: 50px; */
   outline: none;
-	/* box-shadow: 0 0 10px pink;  */
 }
 
 .display {
@@ -332,20 +250,6 @@ body {
   -ms-grid-row: 1;
   grid-row: 1;
 }
-
-/* .glowing-border {
-	border: 2px solid  #9ecaed;
-  border-radius: 7px;
-  outline: none;
-	box-shadow: 0 0 10px #9ecaed;  
-} */
-
-
-/* .glowing-border:focus { 
-	outline: none;
-	border-color: #9ecaed;
-	box-shadow: 0 0 10px #9ecaed;
-} */
 
 .banner {
   display: flex;
@@ -517,7 +421,6 @@ body {
   background-color: black;
   color: #fff;
   border-radius: 50%;
-  /* padding: 30px; */
   width: 80px;
   height: 80px;
   text-align: center;
@@ -532,13 +435,10 @@ body {
   background-color: black;
   color: #fff;
   border-radius: 50%;
-  /* padding: 30px; */
   width: 80px;
   height: 80px;
-  /* font-size: 150%; */
   text-align: center;
   border: 2px solid  #9ecaed;
-  /* border-radius: 50px; */
   outline: none;
 	box-shadow: 0 0 20px #9ecaed; 
 }

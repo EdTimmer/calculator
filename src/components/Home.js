@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Button } from '@material-ui/core';
-import ReactAudioPlayer from 'react-audio-player';
-
-import NumberButton from './Buttons/NumberButton';
-// import ZeroButton from './Buttons/ZeroButton';
-// import Screen from './Screen';
-import EqualsButton from './Buttons/EqualsButton';
-import jspfpc from 'js-float-calculation';
-// var jspfpc = require("js-float-calculation");
 import { additionFn, subtractionFn, multiplicationFn, divisionFn } from './functions/basicCalculations';
-
+import jspfpc from 'js-float-calculation';
 import power1 from "../images/power1.png";
-import power2 from "../images/power2.png";
-import bannerImg from "../images/banner1.jpg";
-import powerSound from "../sounds/button1.wav";
-import regularButtonSound from "../sounds/button-3.wav";
-import equalsButtonSound from "../sounds/button-10.wav";
 import Binary from './Binary';
 import Quotes from './Quotes';
 
@@ -30,7 +16,6 @@ class Home extends Component {
             result: '',
             on: false,
             opacity: 0,
-            // ac: false
         }
         this.zero = this.zero.bind(this);
         this.one = this.one.bind(this);
@@ -52,19 +37,8 @@ class Home extends Component {
         this.getPercentage = this.getPercentage.bind(this);
         this.changeSign = this.changeSign.bind(this);
         this.powerSwitch = this.powerSwitch.bind(this);
-        // this.additionFn = this.additionFn.bind(this);
-        // this.subtractionFn = this.subtractionFn.bind(this);
-        // this.multiplicationFn = this.multiplicationFn.bind(this);
-        // this.divisionFn = this.divisionFn.bind(this);
         this.selectOperation = this.selectOperation.bind(this);
-        // this.play = this.play.bind(this);
-        // this.audio = document.createElement('audio');
-        // this.play = this.play.bind(this);
-        // this.audio.src = "../sounds/button-3.wav";
     }
-    // play() {
-    //     this.audio.play();
-    // }
 
     selectOperation(a, b, operator) {
         if (this.state.operator === ' + ') {
@@ -82,10 +56,6 @@ class Home extends Component {
     }
 
     zero() {
-        // let audio = new Audio("../sounds/button-3.wav");
-        // if (this.state.soundOn) {
-        // audio.play();
-        // this.play()
         if (this.state.result) {
             this.clear();
         }
@@ -450,7 +420,6 @@ class Home extends Component {
 
     calculate() {
         if (this.state.a === '0.' && this.state.operator === '' && this.state.b === '') {
-            // const newResult = this.state.a + '0';
             this.setState({
                 a: '',
                 b: '',
@@ -599,8 +568,7 @@ class Home extends Component {
         else if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
 
             const newB = multiplicationFn(divisionFn(this.state.a, 100), this.state.b)
-            // const newB = (this.state.a / 100) * this.state.b;
-
+ 
             //addition
             if (this.state.operator === ' + ') {
 
@@ -612,11 +580,6 @@ class Home extends Component {
             }
             //subtraction
             if (this.state.operator === ' - ') {
-
-                // const subtraction = (a, b) => {
-                //     return parseFloat(a) - parseFloat(b);
-                // }
-
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
@@ -625,11 +588,6 @@ class Home extends Component {
             }
             //multiplication
             if (this.state.operator === ' ✕ ') {
-
-                // const multiplication = (a, b) => {
-                //     return parseFloat(a) * parseFloat(b);
-                // }
-
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
@@ -638,20 +596,13 @@ class Home extends Component {
             }
             //division
             if (this.state.operator === ' / ') {
-
-                // const division = (a, b) => {
-                //     return parseFloat(a) / parseFloat(b);
-                // }
-
                 this.setState({
                     b: this.state.b + '%',
                     equals: ' = ',
                     result: divisionFn(this.state.a, newB)
                 })
             }
-
         }
-
     }
 
     changeSign() {
@@ -667,7 +618,6 @@ class Home extends Component {
                 })
             }
             else {
-                // const withMinus = this.state.result.substr(1);
                 this.setState({
                     a: '-' + this.state.result,
                     operator: '',
@@ -718,37 +668,22 @@ class Home extends Component {
 
     powerSwitch() {
         this.clear();
-        // let audio = new Audio("../sounds/button1.wav");
-        // if (this.state.soundOn) {
-        // audio.play();
-        // }
         if (this.state.on) {
             this.setState({ on: false, opacity: 0 })
         }
         else {
             this.setState({ on: true, opacity: 1 })
         }
-        // this.setState({ on: !this.state.on })
     }
-
-    // play() {
-    //     const audio = document.getElementById("audio");
-    //     audio.play();
-    // }
 
     render() {
 
         const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
 
-        // const powerOn = this.state.on ? 'box-power-on' : 'box-power-off';
-        const powerBtn = this.state.on ? power2 : power1;
-        const banner = this.state.on ? (<span>tron calculator</span>) : null
-        // const btnOpacity = this.state.on ? "1.0" : "0.4";
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
         const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-equals-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
         const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off';
-        const acPressed = this.state.ac ? '../sounds/button-3.wav' : null;
         const powerBtnSwitch = this.state.on ? 'power-btn-on' : 'power-btn-off';
 
         return (
@@ -785,30 +720,12 @@ class Home extends Component {
 
                         <div className="power">
                             <div className={powerBtnSwitch} onClick={powerSwitch}>
-                                <img src={power1} width={50} />
-
-                                {/*<label className="switch" >
-                                    {/*<input type="checkbox" />
-                                    <span className="slider"></span>
-                            </label>
-
-
-
-                                <img src={powerBtn} width={70} style={{ paddingTop: "5px" }} onClick={powerSwitch} />*/}
+                                <img src={power1} width={50} alt="powerButton"/>
                             </div>
                         </div>
 
-
-
-
-
                         <div className={`${buttonOn} ac`} onClick={clear}>
-                            {/* {
-                                this.state.ac ? (<audio src="../sounds/button-3.wav" autoPlay />) : null
-                            }  */}
-                            <span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac
-                        {/*<ReactAudioPlayer src="../sounds/button-3.wav" onPlay={true} />*/}
-                            </span>
+                            <span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac</span>
                         </div>
                         <div className={`${buttonOn} percent`} onClick={getPercentage}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>%</span></div>
                         <div className={`${buttonOn} slash`} onClick={slash}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>/</span></div>
