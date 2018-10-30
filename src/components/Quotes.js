@@ -24,11 +24,19 @@ class Quotes extends Component {
     const index = Math.floor(Math.random() * quotesArr.length)
 
     const quote = quotesArr[index];
-    return (
-      <div>
-        <span>{this.props.result !== '' ? quote : null}</span>
-      </div>
-    )
+
+    if (this.props.on) {
+      return (
+        <div>
+          <span>{this.props.result !== '' ? quote : null}</span>
+        </div>
+      )
+    }
+
+    else {
+      return null;
+    }
+
   }
 
 }

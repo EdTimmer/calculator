@@ -748,13 +748,14 @@ class Home extends Component {
         const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-equals-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
         const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off';
-        const acPressed = this.state.ac ? '../sounds/button-3.wav' : null
+        const acPressed = this.state.ac ? '../sounds/button-3.wav' : null;
+        const powerBtnSwitch = this.state.on ? 'power-btn-on' : 'power-btn-off';
 
         return (
             <div className="wrapper bgimg-1">
                 <div className="left-pane">
-                    <div className="inner-dispaly-binary" style={{ paddingTop: '80px' }}>
-                        <Binary a={this.state.a} b={this.state.b} result={this.state.result} />
+                    <div className="inner-dispaly-binary">
+                        <Binary a={this.state.a} b={this.state.b} result={this.state.result} on={this.state.on} />
                     </div>
                 </div>
                 <div className="wrapper-calculator" style={{ padding: '20px' }}>
@@ -762,41 +763,42 @@ class Home extends Component {
 
                         <div className={displayOn}>
                             <div className="innerDisplay">
-                                <span>{this.state.a}</span>
-                                <span>{this.state.operator}</span>
-                                <span>{this.state.b}</span>
-                                <span>{this.state.equals}</span>
-                                <br />
-                                <span style={{ color: 'rgb(233, 4, 157)' }}>{this.state.result}</span>
-                                {/*<span>{this.state.result}</span>*/}
-                            </div>
-                            {/*<br />
-                            <div style={{textAlign: "left"}}>
-                                <span>{this.state.result}</span>
-                            </div>*/}
-                        </div>
+                                {
+                                    this.state.on ? (
+                                        <div style={{ paddingTop: "10px" }}>
+                                            <span>{this.state.a}</span>
+                                            <span>{this.state.operator}</span>
+                                            <span>{this.state.b}</span>
+                                            <span>{this.state.equals}</span>
+                                            <br />
+                                            <span style={{ color: 'rgb(170, 42, 255)' }}>{this.state.result}</span>
+                                        </div>
+                                    ) : (null)
+                                }
 
-                        {/*<div className={`${powerOn} power`} onClick={powerSwitch}></div>*/}
+                            </div>
+                        </div>
 
                         <div className="banner">
-                            {/*<img src={banner} height={60} />*/}
                             <span>tron calculator</span>
                         </div>
-                        <div>
-                            <div className="power">
-                                <img src={powerBtn} width={70} style={{ paddingTop: "5px" }} onClick={powerSwitch} />
-                                {/* {
-                                    this.state.on ? (<audio src={powerSound} autoPlay />) : null
-                                }
-                                {
-                                    this.state.on ? null : (<audio src={powerSound} autoPlay />)
-                                }  */}
-                                {/*<audio src={powerSound} autoPlay />*/}
-                                {/*<div className="box-power-btn-on">
-  
-                                </div>*/}
+
+                        <div className="power">
+                            <div className={powerBtnSwitch} onClick={powerSwitch}>
+                                <img src={power1} width={50} />
+
+                                {/*<label className="switch" >
+                                    {/*<input type="checkbox" />
+                                    <span className="slider"></span>
+                            </label>
+
+
+
+                                <img src={powerBtn} width={70} style={{ paddingTop: "5px" }} onClick={powerSwitch} />*/}
                             </div>
                         </div>
+
+
 
 
 
@@ -834,11 +836,9 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className="right-pane">
-                    <div style={{ paddingTop: '80px', paddingRight: '20px' }}>
-                        <Quotes result={this.state.result} />
+                    <div style={{ paddingRight: '20px' }}>
+                        <Quotes result={this.state.result} on={this.state.on} />
                     </div>
-
-
                 </div>
             </div>
         );
