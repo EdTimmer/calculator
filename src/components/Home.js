@@ -57,12 +57,20 @@ class Home extends Component {
 
     zero() {
         if (this.state.result) {
-            this.clear();
+            this.setState(
+                {
+                    a: '0',
+                    b: '',
+                    operator: '',
+                    equals: '',
+                    result: '',
+                }
+            )
         }
-        else if (this.state.a !== '0' && this.state.operator === '') {
+        else if (this.state.a !== '0' && this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 0 })
         }
-        else if (this.state.operator && this.state.b !== '0') {
+        else if (this.state.operator && this.state.b !== '0' && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 0 })
         }
     }
@@ -78,10 +86,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '1' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '1' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 1 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 1 })
         }
     }
@@ -97,10 +111,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '2' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '2' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 2 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 2 })
         }
     }
@@ -116,10 +136,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '3' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '3' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 3 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 3 })
         }
     }
@@ -135,10 +161,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '4' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '4' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 4 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 4 })
         }
     }
@@ -154,10 +186,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '5' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '5' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 5 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 5 })
         }
     }
@@ -173,10 +211,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '6' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '6' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 6 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 6 })
         }
     }
@@ -192,10 +236,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '7' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '7' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 7 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 7 })
         }
     }
@@ -211,10 +261,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '8' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '8' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 8 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 8 })
         }
     }
@@ -230,10 +286,16 @@ class Home extends Component {
                 }
             )
         }
-        else if (this.state.operator === '') {
+        else if (this.state.a === '0' && !this.state.operator) {
+            this.setState({ a: '9' })
+        }
+        else if (this.state.b === '0') {
+            this.setState({ b: '9' })
+        }
+        else if (this.state.operator === '' && this.state.a.length < 16) {
             this.setState({ a: this.state.a + 9 })
         }
-        else if (this.state.operator) {
+        else if (this.state.operator && this.state.b.length < 16) {
             this.setState({ b: this.state.b + 9 })
         }
     }
@@ -568,7 +630,7 @@ class Home extends Component {
         else if (this.state.a !== '' && this.state.b !== '' && this.state.result === '') {
 
             const newB = multiplicationFn(divisionFn(this.state.a, 100), this.state.b)
- 
+
             //addition
             if (this.state.operator === ' + ') {
 
@@ -720,7 +782,7 @@ class Home extends Component {
 
                         <div className="power">
                             <div className={powerBtnSwitch} onClick={powerSwitch}>
-                                <img src={power1} width={50} alt="powerButton"/>
+                                <img src={power1} width={50} alt="powerButton" />
                             </div>
                         </div>
 
