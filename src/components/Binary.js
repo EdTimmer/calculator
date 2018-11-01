@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { multiplicationFn, divisionFn } from './functions/basicCalculations';
 
 class Binary extends Component {
   render() {
@@ -7,12 +8,21 @@ class Binary extends Component {
     const aAsBinary1 = a === '' ? '' : parseInt(Math.abs(a), 10).toString(2).substr(0, 15);
     const aAsBinary2 = a === '' ? '' : parseInt(Math.abs(a), 10).toString(2).substr(15, 15);
     const aAsBinary3 = a === '' ? '' : parseInt(Math.abs(a), 10).toString(2).substr(30, 15);
-    const bAsBinary1 = b === '' ? '' : parseInt(Math.abs(b), 10).toString(2).substr(0, 15);
-    const bAsBinary2 = b === '' ? '' : parseInt(Math.abs(b), 10).toString(2).substr(15, 15);
-    const bAsBinary3 = b === '' ? '' : parseInt(Math.abs(b), 10).toString(2).substr(30, 15);
+
+    const bWithoutPercent = b.includes('%') ? b.slice(0, -1) : b;
+    const newB = multiplicationFn(divisionFn(a, 100), bWithoutPercent);
+
+    const bForFormula = b.includes('%') ? newB : b;
+
+    const bAsBinary1 = b === '' ? '' : parseInt(Math.abs(bForFormula), 10).toString(2).substr(0, 15);
+    const bAsBinary2 = b === '' ? '' : parseInt(Math.abs(bForFormula), 10).toString(2).substr(15, 15);
+    const bAsBinary3 = b === '' ? '' : parseInt(Math.abs(bForFormula), 10).toString(2).substr(30, 15);
+
     const resultAsBinary1 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(0, 15);
     const resultAsBinary2 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(15, 15);
     const resultAsBinary3 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(30, 15);
+
+
 
     if (this.props.on) {
       return (
