@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "decimal-to-binary": "^1.0.3",
     "js-float-calculation": "^0.1.6",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

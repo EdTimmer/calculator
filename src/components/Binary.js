@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import converter from 'decimal-to-binary';
 
 class Binary extends Component {
   render() {
@@ -14,8 +13,6 @@ class Binary extends Component {
     const resultAsBinary1 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(0, 15);
     const resultAsBinary2 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(15, 15);
     const resultAsBinary3 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(30, 15);
-
-
 
     if (this.props.on) {
       return (
@@ -44,7 +41,6 @@ class Binary extends Component {
             {resultAsBinary3}
           </span>
         </div>
-
       )
     }
     else {
@@ -54,6 +50,3 @@ class Binary extends Component {
 }
 
 export default Binary;
-
-
-
