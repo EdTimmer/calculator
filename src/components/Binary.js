@@ -1,38 +1,47 @@
 import React, { Component } from 'react';
-import converter from 'decimal-to-binary';
+// import converter from 'decimal-to-binary';
 
 class Binary extends Component {
   render() {
     const { a, b, result } = this.props;
-    const newA = a[0] === '-' ? a.substr(1, 10) : a.substr(0, 10);
-    const newB = b[0] === '-' ? b.substr(1, 10) : b.substr(0, 10);
-    const newResult = result[0] === '-' ? result.substr(1, 10) : result.substr(0, 10);
+
+    const aAsBinary1 = a === '' ? '' : parseInt(Math.abs(a), 10).toString(2).substr(0, 15);
+    const aAsBinary2 = a === '' ? '' : parseInt(Math.abs(a), 10).toString(2).substr(15, 15);
+    const aAsBinary3 = a === '' ? '' : parseInt(Math.abs(a), 10).toString(2).substr(30, 15);
+    const bAsBinary1 = b === '' ? '' : parseInt(Math.abs(b), 10).toString(2).substr(0, 15);
+    const bAsBinary2 = b === '' ? '' : parseInt(Math.abs(b), 10).toString(2).substr(15, 15);
+    const bAsBinary3 = b === '' ? '' : parseInt(Math.abs(b), 10).toString(2).substr(30, 15);
+    const resultAsBinary1 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(0, 15);
+    const resultAsBinary2 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(15, 15);
+    const resultAsBinary3 = result === '' ? '' : parseInt(Math.abs(result), 10).toString(2).substr(30, 15);
 
 
-    const newResultSafe = result === '' ? '' : parseInt(newResult);
-    // const newResultSafe = newResult ? newResult.toString().substr(0, 10) : '';
-
-    const resultA = converter.convertToBinary(newA);
-    const resultB = converter.convertToBinary(newB);
-    // const resultResult = converter.convertToBinary(newResultSafe);
-    const convertedResult = parseInt(newResultSafe, 10).toString(2);
-    // const filteredResult = converter.convertToBinary(newResultSafe);
-    // const filteredNewResult = !!converter.convertToBinary(newResultSafe) ? converter.convertToBinary(newResultSafe) : '';
-    const displayResult = result === '' ? '' : convertedResult;
 
     if (this.props.on) {
       return (
         <div style={{ textAlign: 'center' }}>
           <span style={{ color: 'white' }}>
-            {resultA}
+            {aAsBinary1}
+            <br />
+            {aAsBinary2}
+            <br />
+            {aAsBinary3}
           </span>
           <br />
           <span style={{ color: 'white' }}>
-            {resultB}
+            {bAsBinary1}
+            <br />
+            {bAsBinary2}
+            <br />
+            {bAsBinary3}
           </span>
           <br />
           <span style={{ color: '#6dff8d' }}>
-            {displayResult}
+            {resultAsBinary1}
+            <br />
+            {resultAsBinary2}
+            <br />
+            {resultAsBinary3}
           </span>
         </div>
 
