@@ -7,13 +7,13 @@ const selectOperator = (a, b, operator) => {
     else if (operator === ' - ') {
         return subtractionFn(a, b);
     }
-    else if (operator === ' * ') {
+    else if (operator === ' ✕ ') {
         return multiplicationFn(a, b);
     }
     else if (operator === ' / ') {
         return divisionFn(a, b);
     }
-} 
+}
 
 export function plus(state) {
     if (state.a !== '' && state.b !== '' && state.result === '') {
