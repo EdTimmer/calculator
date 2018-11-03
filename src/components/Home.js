@@ -124,7 +124,11 @@ class Home extends Component {
             <audio src={regularButtonSound} autoPlay />
         ) : null;
 
-        const equalsSound = this.state.result ? (
+        const equalsSound = this.state.result || (!this.state.a && !this.state.b && this.state.result) ? (
+            <audio src={equals} autoPlay />
+        ) : null;
+
+        const percentSound = (!this.state.a && !this.state.b && this.state.result) ? (
             <audio src={equals} autoPlay />
         ) : null;
 
@@ -203,8 +207,9 @@ class Home extends Component {
                     {playPowerSound}
                     {playButtonSound}
                     {equalsSound}
+                    {percentSound}
                 </div>
-            </div >
+            </div>
         );
     }
 }
