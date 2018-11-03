@@ -61,7 +61,7 @@ body {
   grid-gap: 10px;
   background-color: transparent;
   color: #444;
-  padding: 40px;
+  padding-top: 40px !important;
 }
 
 .deviceCase-on {
