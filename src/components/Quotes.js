@@ -20,13 +20,18 @@ class Quotes extends Component {
       "Get them! Send out every game tank in the grid!",
       "Bring in the logic probe!"
     ];
+    // const index = Math.floor(Math.random() * quotesArr.length);
+    // const quote = quotesArr[index];
+    // console.log(quote);
+
     const index = Math.floor(Math.random() * quotesArr.length);
     const quote = quotesArr[index];
 
-    if (this.props.on) {
+    if (this.props.result !== '') {
+
       return (
         <div>
-          <span>{this.props.result !== '' ? quote : null}</span>
+          <span>{quote}</span>
         </div>
       )
     }

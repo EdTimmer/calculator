@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { additionFn, subtractionFn, multiplicationFn, divisionFn } from './functions/basicCalculations';
 import jspfpc from 'js-float-calculation';
+
 import power1 from "../images/power1.png";
 import Binary from './Binary';
 import Quotes from './Quotes';
@@ -9,6 +9,9 @@ import { plus, minus, star, slash } from './functions/operators';
 import calculate from './functions/calculate';
 import getPercentage from './functions/getPercentage';
 import changeSign from './functions/changeSign';
+import powerSound from '../sounds/start.wav';
+import regularButtonSound from '../sounds/regular.wav';
+import equals from '../sounds/equals.wav';
 
 class Home extends Component {
     constructor() {
@@ -20,10 +23,13 @@ class Home extends Component {
             equals: '',
             result: '',
             on: false,
-            opacity: 0
+            opacity: 0,
+            powerSound: false,
+            regularButton: false,
         }
         this.clear = this.clear.bind(this);
         this.powerSwitch = this.powerSwitch.bind(this);
+        this.playRegularSound = this.playRegularSound.bind(this);
     }
 
     componentWillMount() {
@@ -52,25 +58,77 @@ class Home extends Component {
     }
 
     powerSwitch() {
+        const wait = () => {
+            let promise = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve({});
+                }, 250);
+            });
+            return promise;
+        }
+
         this.clear();
+
         if (this.state.on) {
-            this.setState({ on: false, opacity: 0 })
+            const turnOn = async () => {
+                return this.setState({ on: false, opacity: 0, powerSound: true });
+            }
+            turnOn()
+                .then(() => wait())
+                .then(() => this.setState({ powerSound: false }))
         }
         else {
-            this.setState({ on: true, opacity: 1 })
+            const turnOff = async () => {
+                return this.setState({ on: true, opacity: 1, powerSound: true })
+            }
+            turnOff()
+                .then(() => wait())
+                .then(() => this.setState({ powerSound: false }))
         }
+    }
+
+    playRegularSound() {
+        console.log('playRegularSound functions got called')
+        const wait = () => {
+            let promise = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve({});
+                }, 250);
+            });
+            return promise;
+        }
+        const play = async () => {
+            if (this.state.on) {
+                return this.setState({ regularButton: true })
+            }
+        }
+        play()
+            .then(() => wait())
+            .then(() => this.setState({ regularButton: false }))
     }
 
     render() {
 
-        const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch } = this;
-
+        const { zero, one, two, three, four, five, six, seven, eight, nine, dot, clear, plus, minus, star, slash, calculate, getPercentage, changeSign, powerSwitch, playRegularSound } = this;
         const buttonOn = this.state.on ? 'box-on' : 'box-off';
         const equalsButtonOn = this.state.on ? 'box-equals-on' : 'box-equals-off';
         const deviceOn = this.state.on ? 'deviceCase-on' : 'deviceCase-off';
         const displayOn = this.state.on ? 'boxDisplay-on' : 'boxDisplay-off';
         const powerBtnSwitch = this.state.on ? 'power-btn-on' : 'power-btn-off';
 
+        const playPowerSound = this.state.powerSound ? (
+            <audio src={powerSound} autoPlay />
+        ) : null;
+
+        const playButtonSound = this.state.regularButton ? (
+            <audio src={regularButtonSound} autoPlay />
+        ) : null;
+
+        const equalsSound = this.state.result ? (
+            <audio src={equals} autoPlay />
+        ) : null;
+
+        console.log(this.state.regularButton)
         return (
             <div className="wrapper bgimg-1">
                 <div className="left-pane">
@@ -98,40 +156,40 @@ class Home extends Component {
 
                             </div>
                         </div>
-
                         <div className="banner">
                             <span>tron calculator</span>
                         </div>
+
                         <div className="power">
                             <div className={powerBtnSwitch} onClick={powerSwitch}>
                                 <img src={power1} width={50} alt="powerButton" />
                             </div>
                         </div>
 
-                        <div className={`${buttonOn} ac`} onClick={clear}>
+                        <div className={`${buttonOn} ac`} onClick={() => { clear(); playRegularSound() }}>
                             <span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>ac</span>
                         </div>
                         <div className={`${buttonOn} percent`} onClick={() => getPercentage(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>%</span></div>
-                        <div className={`${buttonOn} slash`} onClick={() => slash(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>/</span></div>
-                        <div className={`${buttonOn} star`} onClick={() => star(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>✕</span></div>
+                        <div className={`${buttonOn} slash`} onClick={() => { slash(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>/</span></div>
+                        <div className={`${buttonOn} star`} onClick={() => { star(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>✕</span></div>
 
-                        <div className={`${buttonOn} seven`} onClick={() => seven(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>7</span></div>
-                        <div className={`${buttonOn} eight`} onClick={() => eight(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>8</span></div>
-                        <div className={`${buttonOn} nine`} onClick={() => nine(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>9</span></div>
-                        <div className={`${buttonOn} minus`} onClick={() => minus(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>-</span></div>
+                        <div className={`${buttonOn} seven`} onClick={() => { seven(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>7</span></div>
+                        <div className={`${buttonOn} eight`} onClick={() => { eight(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>8</span></div>
+                        <div className={`${buttonOn} nine`} onClick={() => { nine(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>9</span></div>
+                        <div className={`${buttonOn} minus`} onClick={() => { minus(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>-</span></div>
 
-                        <div className={`${buttonOn} four`} onClick={() => four(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>4</span></div>
-                        <div className={`${buttonOn} five`} onClick={() => five(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>5</span></div>
-                        <div className={`${buttonOn} six`} onClick={() => six(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>6</span></div>
-                        <div className={`${buttonOn} plus`} onClick={() => plus(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>+</span></div>
+                        <div className={`${buttonOn} four`} onClick={() => { four(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>4</span></div>
+                        <div className={`${buttonOn} five`} onClick={() => { five(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>5</span></div>
+                        <div className={`${buttonOn} six`} onClick={() => { six(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>6</span></div>
+                        <div className={`${buttonOn} plus`} onClick={() => { plus(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>+</span></div>
 
-                        <div className={`${buttonOn} one`} onClick={() => one(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>1</span></div>
-                        <div className={`${buttonOn} two`} onClick={() => two(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>2</span></div>
-                        <div className={`${buttonOn} three`} onClick={() => three(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>3</span></div>
+                        <div className={`${buttonOn} one`} onClick={() => { one(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>1</span></div>
+                        <div className={`${buttonOn} two`} onClick={() => { two(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>2</span></div>
+                        <div className={`${buttonOn} three`} onClick={() => { three(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>3</span></div>
 
-                        <div className={`${buttonOn} zero`} onClick={() => zero(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>0</span></div>
-                        <div className={`${buttonOn} dot`} onClick={() => dot(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>.</span></div>
-                        <div className={`${buttonOn} plusminus`} onClick={() => changeSign(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>+/-</span></div>
+                        <div className={`${buttonOn} zero`} onClick={() => { zero(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>0</span></div>
+                        <div className={`${buttonOn} dot`} onClick={() => { dot(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>.</span></div>
+                        <div className={`${buttonOn} plusminus`} onClick={() => { changeSign(this.state); playRegularSound() }}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>+/-</span></div>
                         <div className={`${equalsButtonOn} equals`} onClick={() => calculate(this.state)}><span style={{ transition: 'all 1s ease-in-out', opacity: this.state.opacity }}>=</span></div>
 
                     </div>
@@ -141,7 +199,12 @@ class Home extends Component {
                         <Quotes result={this.state.result} on={this.state.on} />
                     </div>
                 </div>
-            </div>
+                <div>
+                    {playPowerSound}
+                    {playButtonSound}
+                    {equalsSound}
+                </div>
+            </div >
         );
     }
 }
