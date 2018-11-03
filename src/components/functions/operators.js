@@ -42,7 +42,7 @@ export function plus(state) {
 export function minus(state) {
     if (state.a !== '' && state.b !== '' && state.result === '') {
         const getResult = async (a, b) => {
-            return subtractionFn(Operation(a, b);
+            return subtractionFn(a, b);
         }
         getResult(state.a, state.b)
             .then((res) => this.setState({
@@ -81,7 +81,7 @@ export function minus(state) {
 export function star(state) {
     if (state.a !== '' && state.b !== '' && state.result === '') {
         const getResult = async (a, b) => {
-            return multiplicationFn(Operation(a, b);
+            return multiplicationFn(a, b);
         }
         getResult(state.a, state.b)
             .then((res) => this.setState({
@@ -120,7 +120,7 @@ export function star(state) {
 export function slash(state) {
     if (state.a !== '' && state.b !== '' && state.result === '') {
         const getResult = async (a, b) => {
-            return division(Operation(a, b);
+            return divisionFn(a, b);
         }
         getResult(state.a, state.b)
             .then((res) => this.setState({
