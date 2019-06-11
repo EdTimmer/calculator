@@ -6,7 +6,8 @@ body {
 .bgimg-1 {
   background-image: url("../images/cyber1.jpg");
   background-position: center;
-  height: 100vh;
+  background-repeat: repeat-y;
+  /* height: 100vh; */
   min-width: 100wh;
 }
 
